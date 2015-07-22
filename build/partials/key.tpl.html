@@ -1,0 +1,22 @@
+			<div id="keyWrapper">
+				<div class="childImage boy td"></div>
+				<div class="td">
+					<div id="circleKey">
+						<div class="table">
+							<div ng-repeat="(k,v) in key" class="tr">
+								<div class="td {{v.id}}"> 
+									<span class="dot">&#9679;</span>
+									<span><b>{{v.name}}</b>: {{v.desc}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="circleLegend">
+						<h3>{{legend.heading}}</h3>
+						<div ng-repeat="(k,v) in legend.key" class="legendItem">
+							<span class="legendKey">{{k}}</span>
+							<span class="legendValue">{{v}}</span>
+						</div>
+					</div>
+				</div>
+			</div>

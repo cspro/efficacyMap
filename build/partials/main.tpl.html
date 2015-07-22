@@ -1,0 +1,19 @@
+<div class="sectionWrapper" ng-controller="MainCtrl as mainCtrl">
+	<div class="header">
+		<span>Competencies</span>
+	</div>
+  <div id="competencies" ng-class="mainCtrl.layoutClass" class="blockContainer">
+		<div class="competency block" ng-click="mainCtrl.onCompClick($event, comp)" ng-repeat="comp in mainCtrl.comps">
+			<a class="competencyInner blockInner block-{{$index}}" ng-style="comp.style">
+				<div class="blockContent">
+					<div class="centered">
+						{{comp.name}}
+						<div class="compLink" ng-show="comp.linkName">
+							<span ng-click="mainCtrl.onCompLink($event, comp.linkUrl)">{{comp.linkName}}</span>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+  </div>
+</div>

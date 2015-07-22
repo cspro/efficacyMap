@@ -1,0 +1,127 @@
+$neutralBg   : #bbbbbb;
+$textColor   : #333333;
+$headerColor : #333333;
+$width       : 768px;
+$height      : 400px;
+
+$red1        : #9d1348;
+$red2        : #b9204b;
+$red3        : #ca2f45;
+$red4        : #e04854;
+$red5        : #e8c7c4; // light bg color
+
+* {
+  font-family: "Open Sans", Verdana, sans-serif !important;
+  font-size: 14px;
+  color: #ccc;
+  margin: 0;
+}
+body {
+  background-color: $neutralBg;
+  color: $textColor;
+}
+a {
+  color: white;
+  border-radius: 3px;
+}
+a:hover {
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: rgba(0,0,0,0.25)
+}
+h1 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-top: 0;
+}
+h2 {font-size: 1.35em;}
+h3 {font-size: 1.15em;}
+h1, h2, h3, h4 {
+  color: $headerColor;
+  margin-top: 0;
+}
+
+img.no-resize { max-width: none; }
+img, area, map {
+  outline: none;
+}
+.spaceBelow {
+  margin-bottom: 1em; 
+}
+.spaceAbove {
+  margin-top: 1em; 
+}
+.allCaps {
+  text-transform: uppercase;
+}
+.tooltip-inner {
+  max-width: 300px;
+  min-width: 50px;  
+  font-size: 10px !important;
+}
+.table {
+  display: table;
+  margin: 0;
+}
+/* override Bootstrap default, which makes this white for some reason */
+.table .table {
+  background-color: transparent;
+}
+.tr {
+  display: table-row;
+}
+.td {
+  display: table-cell;
+  vertical-align: top;
+}
+
+#wrapper {
+  // min-width: 380px;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0; 
+  width: $width; 
+  height: $height; 
+  overflow: hidden; 
+  background-color: #eee;  
+}
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.loading {
+  display: block;
+  position: absolute;
+  width: 100px;
+  margin-left: -50px;
+  top:50%;
+  left:50%;
+}
+
+
+
+/* Extra small devices (phones, up to 480px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 600px) {
+}
+
+/* Medium devices (desktops and up) */
+@media (min-width: 992px) {
+  .hiddenAtLarge {
+    /* Fix for IE10 clearing issue */
+    display: none !important;
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  
+}
+
+.footer {
+}

@@ -1,0 +1,27 @@
+<div class="sectionWrapper" ng-controller="AttributeCtrl as attrCtrl">
+	<div class="header">
+		<a ng-click="attrCtrl.onMainClick($event)">Competencies</a> &raquo; 
+		<a ng-click="attrCtrl.onCompClick($event)">{{attrCtrl.comp.name}}</a> &raquo; 
+		<span>{{attrCtrl.attr.name}}</span>
+	</div>
+	<div id="contents" class="blockContainer">
+		<div class="content block">
+			<div class="contentInner blockInner block-0">
+				<h3>Discover</h3>
+				{{attrCtrl.ddl.discover}}
+			</div>
+		</div>
+		<div class="content block">
+			<div class="contentInner blockInner block-1">
+				<h3>Develop</h3>
+				{{attrCtrl.ddl.develop}}
+			</div>
+		</div>
+		<div class="content block">
+			<div class="contentInner blockInner block-2 no-border">
+				<h3>Lead</h3>
+				{{attrCtrl.ddl.lead}}
+			</div>
+		</div>
+	</div>
+</div>

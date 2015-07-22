@@ -1,0 +1,16 @@
+<div class="sectionWrapper" ng-controller="CompetencyCtrl as compCtrl">
+	<div class="header">
+		<a ng-click="compCtrl.onBackClick($event)">Competencies</a> &raquo; <span>{{compCtrl.msg}}</span>
+	</div>
+	<div id="attributes" ng-class="compCtrl.layoutClass" class="blockContainer">
+		<div class="attribute block" ng-click="compCtrl.onAttrClick($event, attr)" ng-repeat="attr in compCtrl.attrs">
+			<a class="attributeInner blockInner block-{{$index}}" ng-style="attr.style">
+				<div class="blockContent">
+					<div class="centered">
+						{{attr.name}}
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>

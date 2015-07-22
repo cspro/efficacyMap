@@ -1,0 +1,199 @@
+$modalBgColor: #F1F1F1;
+$iconIndent: 110px;
+
+.modal {
+  display: block;
+  height: 0;
+  position: absolute; // allows scrolling
+  overflow: visible;
+}
+
+/* ==================================
+ * Override Bootstrap styles 
+ * ================================ */
+ 
+@media screen and (min-width: 768px) {
+  .modal-dialog {
+    width: auto;
+    padding: 1em 3em;
+    margin-bottom: 1em;
+  }
+}
+
+.modal-backdrop.in {
+  opacity: 0.75;
+  filter: alpha(opacity=75);
+}
+
+.modal-header {
+  min-height: 16.428571429px;
+  padding: 1em 1.5em;
+  // border-bottom: 1px solid #e5e5e5;
+}
+
+.modal-header .close {
+	margin-top: -2px;
+}
+.modal-body {
+  background-color: $modalBgColor;
+	padding: 0 1.5em;
+}
+.modal-footer {
+  margin-top: 0;
+  padding: 0.5em;
+}
+
+/* ================================== */
+
+.modal-header {
+  .icon {
+    display: none;
+    width: 55px;
+    height: 48px;
+    float: left; 
+    margin-left: 20px;
+    &.CC {
+      background:url('../images/project_icons_lg.png')  0 0;
+    }
+    &.DD {
+      background:url('../images/project_icons_lg.png')  -55px 0;
+    }
+    &.EE {
+      background:url('../images/project_icons_lg.png')  -110px 0;
+    }
+    &.OL {
+      background:url('../images/project_icons_lg.png')  -165px 0;
+    }
+    &.NG {
+      background:url('../images/project_icons_lg.png')  -220px 0;
+    }
+
+  }
+  h2 {
+    font-size: 1.65em;
+    color: $accentColor;
+    line-height: 48px;
+    vertical-align: middle;
+    margin: 0;
+  }
+}
+
+.modalRow {
+  clear: both;
+  background: url("../images/modal_divider.png") top left no-repeat;
+  background-size: 100% 6px;
+  margin-right: -20px;
+  margin-left: -20px;
+  &.footerRow {
+    background-color: darken($modalBgColor, 10%);
+  }
+  .icon {
+    display: none;
+    float: left;
+    width: 105px;
+    height: 87px;
+    margin-left: 1em;
+    background: url("../images/modal_divider_icon_bg.png") top left no-repeat;
+    div {
+      width: 105px;
+      height: 87px;
+      &.lead {
+        background: url("../images/modal_divider_icons.png") 0 0 no-repeat;
+      }
+      &.results {
+        background: url("../images/modal_divider_icons.png") -105px 0 no-repeat;
+      }
+      &.partners {
+        background: url("../images/modal_divider_icons.png") -210px 0 no-repeat;
+      }
+      &.goals {
+        background: url("../images/modal_divider_icons.png") -315px 0 no-repeat;
+      }
+      &.resources {
+        background: url("../images/modal_divider_icons.png") -420px 0 no-repeat;
+      }
+    }
+  }
+}
+.modalRowContent {
+  display: block;
+  padding: 1.5em 4em 1.5em 1.5em;
+  h4 {
+    margin: 0 0 0.5em 0;
+    padding-top: 0.5em;
+    text-transform: uppercase;
+    color: $accentColor;
+    &:first-child {
+      padding-top: 0;
+    }
+    span {
+      font-size: inherit;
+    }
+  }
+  section {
+    padding-left: 1.5em;
+  }
+  .sectionContent, p {
+    margin-bottom: 0.5em;
+    ol, ul {
+      padding-left: 1.5em;
+      li {
+        margin-bottom: 0.5em;
+      }
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .indent {
+    margin-left: 1.5em;
+  }
+  .tableWrapper {
+    margin-top: 0;
+    margin-bottom: 1em;
+    .table {
+      display: table;
+      width: auto !important;
+      &.indent {
+        .td:first-child {
+          padding-left: 1.5em;
+        }
+      }
+    }
+    .tr {
+      display: table-row;
+    }
+    .td {
+      display: table-cell;
+      &:first-child {
+        padding: 0 0.5em 0 0;
+      }
+      &:last-child {
+        padding: 0 0 0 0.5em;
+      }
+      &.tableVerticalDivider {
+        border-top: 1px solid $modalBgColor;
+        border-bottom: 1px solid $modalBgColor;
+        background-color: darken($modalBgColor, 25%);
+        width: 1px;
+        padding: 0;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    .icon {
+      display: block !important;
+    }
+    .modal-header {
+      h2, h3 {
+        margin-left: $iconIndent !important;
+      }
+     } 
+    .modalRowContent {
+      margin-left: $iconIndent !important;
+    }
+  }
+}
