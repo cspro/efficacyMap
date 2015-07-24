@@ -1,5 +1,5 @@
 (function() {
-	var app = angular.module('exampleApp', ['ngRoute', 'ngAnimate']);
+	var app = angular.module('efficacyMapApp', ['ngRoute']);
 	
 	app.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.
@@ -33,6 +33,7 @@
 		this.getData = function() {
 			if (!this.data) {
 				this.dataMap = {};
+				var rawData = [];
 				angular.forEach(rawData, function(comp, key) {
 				});
 			}

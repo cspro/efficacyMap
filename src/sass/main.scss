@@ -1,8 +1,9 @@
 $neutralBg   : #bbbbbb;
+$mainBg      : #ffffff;
 $textColor   : #333333;
 $headerColor : #333333;
-$width       : 768px;
-$height      : 400px;
+$width       : 100%;
+$height      : 100%;
 
 $red1        : #9d1348;
 $red2        : #b9204b;
@@ -85,7 +86,7 @@ img, area, map {
   width: $width; 
   height: $height; 
   overflow: hidden; 
-  background-color: #eee;  
+  background-color: $mainBg;  
 }
 .container {
   position: absolute;
@@ -120,8 +121,9 @@ img, area, map {
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  
 }
-
 .footer {
 }
+
+@import 'map';
+
