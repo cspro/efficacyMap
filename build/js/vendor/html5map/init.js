@@ -40,10 +40,10 @@ $(function() {
 	useParameterInUrl = false;
 	
 	ratio = mapWidth / mapHeight;
-	oMapWidth = mapWidth;
+	startingMapWidth = mapWidth;
 	
 	mapWidth = parseFloat(mapWidth, 10);
-	oMapWidth = mapWidth;
+	startingMapWidth = mapWidth;
 	mapHeight = mapWidth / ratio;
 	
 	win = $(window);
@@ -306,35 +306,10 @@ $(function() {
 
 		r.changeSize(mapWidth, mapHeight, true, false);
 
-		if (useText == 'true') {
-
-			if (useTextAtBottom) {
-
-				$(".mapWrapper").css({
-					'width' : parseFloat(mapWidth, 10) + 'px',
-					'height' : mapHeight + 'px'
-				});
-			} else {
-				if (winWidth >= 768) {
-					$(".mapWrapper").css({
-						'width' : (parseFloat(mapWidth, 10) + parseFloat(textAreaWidth, 10)) + 'px',
-						'height' : mapHeight + 'px'
-					});
-				} else {
-					$(".mapWrapper").css({
-						'width' : parseFloat(mapWidth, 10) + 'px',
-						'height' : mapHeight + 'px'
-					});
-				}
-
-			}
-		} else {
-			$(".mapWrapper").css({
-				'width' : mapWidth + 'px',
-				'height' : mapHeight + 'px'
-			});
-		}
-
+		$(".mapWrapper").css({
+			'width' : mapWidth + 'px',
+			'height' : mapHeight + 'px'
+		});
 	}
 
 	function responsiveResize() {
@@ -342,47 +317,21 @@ $(function() {
 		winWidth = win.width();
 
 		if (winWidth >= 960) {
-			mapWidth = oMapWidth;
+			mapWidth = startingMapWidth;
 			mapHeight = mapWidth / ratio;
 			resizeMap();
 		} else if (winWidth < 960 && winWidth >= 768) {
-			mapWidth = useTextAtBottom ? 728 : 728 - (parseFloat(textAreaWidth) - parseFloat(textAreaPadding * 2));
+			mapWidth =  728;
 			mapHeight = mapWidth / ratio;
 			resizeMap();
 		} else if (winWidth < 480) {
 			mapWidth = 280;
 			mapHeight = mapWidth / ratio;
 			resizeMap();
-
 		} else if (winWidth < 768 && winWidth > 480) {
 			mapWidth = 400;
 			mapHeight = mapWidth / ratio;
 			resizeMap();
-
-		}
-
-		if (useTextAtBottom) {
-			$("#text").css({
-				'width' : parseFloat(mapWidth, 10) - parseFloat(textAreaPadding, 10) * 2 + 'px',
-				'marginTop' : (parseFloat(mapHeight, 10) + 20) + 'px'
-			});
-		} else {
-			if (winWidth >= 768) {
-				$("#text").css({
-					'width' : (parseFloat(textAreaWidth) - parseFloat(textAreaPadding * 2)) + 'px',
-					'height' : (parseFloat(mapHeight) - parseFloat(textAreaPadding * 2)) + 'px',
-					'display' : 'inline',
-					'float' : 'right',
-					'padding' : textAreaPadding + 'px',
-					'marginTop' : 0
-				});
-			} else {
-				$("#text").css({
-					'width' : parseFloat(mapWidth, 10) - parseFloat(textAreaPadding, 10) * 2 + 'px',
-					'marginTop' : (parseFloat(mapHeight, 10) + 20) + 'px'
-				});
-			}
-
 		}
 
 	}
