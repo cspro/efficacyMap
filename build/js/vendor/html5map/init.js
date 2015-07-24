@@ -71,74 +71,22 @@ $(function() {
 		};
 		arr = new Array();
 
-		var usa = {};
-
-		usa.alabama = r.set();
-		usa.alaska = r.set();
-		usa.arizona = r.set();
-		usa.arkansas = r.set();
-		usa.california = r.set();
-		usa.colorado = r.set();
-		usa.connecticut = r.set();
-		usa.delaware = r.set();
-		usa.dc = r.set();
-		usa.florida = r.set();
-		usa.georgia = r.set();
-		usa.hawaii = r.set();
-		usa.idaho = r.set();
-		usa.illinois = r.set();
-		usa.indiana = r.set();
-		usa.iowa = r.set();
-		usa.kansas = r.set();
-		usa.kentucky = r.set();
-		usa.louisiana = r.set();
-		usa.maine = r.set();
-		usa.maryland = r.set();
-		usa.massachusetts = r.set();
-		usa.michigan = r.set();
-		usa.minnesota = r.set();
-		usa.mississippi = r.set();
-		usa.missouri = r.set();
-		usa.montana = r.set();
-		usa.nebraska = r.set();
-		usa.nevada = r.set();
-		usa.newHampshire = r.set();
-		usa.newJersey = r.set();
-		usa.newMexixo = r.set();
-		usa.newYork = r.set();
-		usa.northCarolina = r.set();
-		usa.northDakota = r.set();
-		usa.ohio = r.set();
-		usa.oklahoma = r.set();
-		usa.oregon = r.set();
-		usa.pennsylvenia = r.set();
-		usa.rhodeIsland = r.set();
-		usa.southCarolina = r.set();
-		usa.southDakota = r.set();
-		usa.tennessee = r.set();
-		usa.texas = r.set();
-		usa.utah = r.set();
-		usa.vermont = r.set();
-		usa.virginia = r.set();
-		usa.washington = r.set();
-		usa.westVirginia = r.set();
-		usa.wisconsin = r.set();
-		usa.wyoming = r.set();
-
 		var boxattrs = {
 			'cursor' : 'pointer',
 			'fill' : "#fff"
 		};
+		
 		var i = 0;
 
 		for (var state in usamappaths) {
-
+			
 			//Create obj
-			var obj = usa[state];
+			var obj = r.set();
 			obj.attr(attributes);
 			
 			var stateData = usamappaths[state];
 			stateNames[i] = stateData.name;
+			stateModes[i] = stateData.disabled ? "OFF" : "ON";
 			
 			boxattrs = {
 				'cursor' : 'pointer',
@@ -240,15 +188,11 @@ $(function() {
 
 					current = shapeAr[id];
 
-					if (useText == 'true') {
-						$('#text').html(stateText[id]);
+					//change "_self" to "_blank" if using in WP iframe
+					if (useParameterInUrl) {
+						window.open(stateText[id], '_self');
 					} else {
-						//change "_self" to "_blank" if using in WP iframe
-						if (useParameterInUrl) {
-							window.open(stateText[id], '_self');
-						} else {
-							window.open(stateURLs[id], '_self');
-						}
+						window.open(stateURLs[id], '_self');
 					}
 				}
 			});
