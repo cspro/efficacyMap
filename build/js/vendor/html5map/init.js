@@ -27,223 +27,49 @@ $(function() {
 	// Detect if the browser supports ajax.
 	var hasAjax = jQuery.support.ajax;
 
-	$.ajax({
-		type : 'GET',
-		url : 'xml/usaMapSettings.xml',
-		dataType : hasAjax ? 'xml' : 'text',
-		success : function(data) {
+	stateColor = '#9d1348';
+	hoverColor = '#ca2f45';
+	strokeColor = '#ffffff';
+	abbrColor = '#ffffff';
+	mapWidth = 1000;
+	mapHeight = 550;
+	textAreaWidth = 300;
+	textAreaPadding = 10;
+	textAreaHeight = 300;
+	responsive = true;
+	useParameterInUrl = false;
+	
+	ratio = mapWidth / mapHeight;
+	oMapWidth = mapWidth;
+	
+	mapWidth = parseFloat(mapWidth, 10);
+	oMapWidth = mapWidth;
+	mapHeight = mapWidth / ratio;
+	
+	win = $(window);
+	winWidth = win.width();
 
-			var xml;
-			if (!hasAjax) {
-				xml = new ActiveXObject('Microsoft.XMLDOM');
-				xml.async = false;
-				xml.loadXML(data);
-			} else {
-				xml = data;
-			}
-
-			var $xml = $(xml);
-
-			offColor = '#' + $xml.find('mapSettings').attr('offColor');
-			strokeColor = '#' + $xml.find('mapSettings').attr('strokeColor');
-			offStrokeColor = '#' + $xml.find('mapSettings').attr('offStrokeColor');
-			abbrColor = '#' + $xml.find('mapSettings').attr('abbreviationColor');
-			mapWidth = $xml.find('mapSettings').attr('mapWidth');
-			mapHeight = $xml.find('mapSettings').attr('mapHeight');
-			useText = $xml.find('mapSettings').attr('useText');
-			useTextAtBottom = $xml.find('mapSettings').attr('useTextAtBottom') == "true" ? true : false;
-			textAreaWidth = $xml.find('mapSettings').attr('textAreaWidth');
-			textAreaPadding = $xml.find('mapSettings').attr('textAreaPadding');
-			textAreaHeight = $xml.find('mapSettings').attr('textAreaHeight');
-			pinSize = $xml.find('mapSettings').attr('pinSize');
-			responsive = $xml.find('mapSettings').attr('responsive') == "true" ? true : false;
-			useParameterInUrl = $xml.find('mapSettings').attr('useParameterInUrl') == "true" ? true : false;
-
-			ratio = mapWidth / mapHeight;
-			oMapWidth = mapWidth;
-
-			if (useText == 'true') {
-
-				if (useTextAtBottom) {
-
-					$("#text").css({
-						'width' : parseFloat(mapWidth, 10) - parseFloat(textAreaPadding, 10) * 2 + 'px',
-						'height' : textAreaHeight + 'px',
-						'marginTop' : (parseFloat(mapHeight, 10) + 20) + 'px',
-						'padding' : textAreaPadding + 'px'
-					});
-				} else {
-
-					mapWidth = parseFloat(mapWidth, 10) - (parseFloat(textAreaWidth) - parseFloat(textAreaPadding * 2));
-					oMapWidth = mapWidth;
-					mapHeight = mapWidth / ratio;
-
-					$("#text").css({
-						'width' : (parseFloat(textAreaWidth) - parseFloat(textAreaPadding * 2)) + 'px',
-						'height' : (parseFloat(mapHeight) - parseFloat(textAreaPadding * 2)) + 'px',
-						'display' : 'inline',
-						'float' : 'right',
-						'padding' : textAreaPadding + 'px'
-					});
-
-				}
-
-				$('#text').html($xml.find('defaultSideText').text());
-			}
-
-			//Parse xml
-			$xml.find('stateData').each(function(i) {
-
-				var $node = $(this);
-
-				stateText.push($node.text());
-				stateNames.push($node.attr('stateName'));
-				stateURLs.push($node.attr('url'));
-				stateModes.push($node.attr('stateMode'));
-				stateColors.push('#' + $node.attr('initialStateColor'));
-				stateOverColors.push('#' + $node.attr('stateOverColor'));
-				stateClickedColors.push('#' + $node.attr('stateSelectedColor'));
-
-			});
-
-			$xml.find('pinData').each(function(i) {
-
-				var $node = $(this);
-
-				pinText.push($node.text());
-				pinNames.push($node.attr('pinName'));
-				pinUrls.push($node.attr('url'));
-				pinX.push($node.attr('pinX'));
-				pinY.push($node.attr('pinY'));
-				pinColors.push('#' + $node.attr('initialPinColor'));
-				pinOverColors.push('#' + $node.attr('pinOverColor'));
-				pinClickedColors.push('#' + $node.attr('pinSelectedColor'));
-
-			});
-
-			win = $(window);
-			winWidth = win.width();
-
-			createMap();
-			// createPins();
-
-		}
-	});
-
-	function createPins() {
-
-		for (var i = 0; i < pinNames.length; i++) {
-
-			//Create obj
-
-			var pinattrs = {
-				'cursor' : 'pointer',
-				'fill' : pinColors[i],
-				stroke : strokeColor,
-				'id' : i
-			};
-
-			//obj.push(r.path(usamappaths[state].path).attr(boxattrs));
-
-			var pin = r.circle(pinX[i], pinY[i], pinSize).attr(pinattrs);
-			pin.node.id = i;
-
-			pin.mouseover(function(e) {
-
-				e.stopPropagation();
-
-				var id = $(this.node).attr('id');
-
-				//Animate if not already the current state
-				if (this != current) {
-					this.animate({
-						fill : pinOverColors[id]
-					}, 500);
-				}
-
-				//tooltip
-
-				$('#map').next('.point').remove();
-				$('#map').after($('<div />').addClass('point'));
-				$('.point').html(pinNames[id]).css({
-					left : mouseX - 50,
-					top : mouseY - 70
-				}).fadeIn();
-
-			});
-
-			pin.mouseout(function(e) {
-
-				var id = $(this.node).attr('id');
-
-				//Animate if not already the current state
-				if (this != current) {
-					this.animate({
-						fill : pinColors[id]
-					}, 500);
-				}
-
-				$('#map').next('.point').remove();
-
-			});
-
-			pin.mouseup(function(e) {
-
-				var id = $(this.node).attr('id');
-
-				//Reset scrollbar
-				var t = $('#text')[0];
-				t.scrollLeft = 0;
-				t.scrollTop = 0;
-
-				//Animate previous state out
-				if (current) {
-					var curid = $(current.node).attr('id');
-					current.animate({
-						fill : isPin ? pinColors[curid] : stateColors[curid]
-					}, 500);
-				}
-				isPin = true;
-
-				//Animate next
-				this.animate({
-					fill : pinClickedColors[id]
-				}, 500);
-
-				current = this;
-
-				if (useText == 'true') {
-					$('#text').html(pinText[id]);
-				} else {
-					//change "_self" to "_blank" if using in WP iframe
-					if (useParameterInUrl) {
-						window.open(pinText[id], '_self');
-					} else {
-						window.open(pinUrls[id], '_self');
-					}
-				}
-
-			});
-
-		}
-
-	}
+	setTimeout(function() {
+		createMap();
+	}, 200);
 
 	function createMap() {
 
 		var shapeAr = [];
 
 		//start map
-		r = new ScaleRaphael('map', 930, 590), attributes = {
+		r = new ScaleRaphael('map', 930, 590); 
+		attributes = {
 			fill : '#d9d9d9',
 			cursor : 'pointer',
 			stroke : strokeColor,
-			'stroke-width' : 1,
+			'stroke-width' : 2,
 			'stroke-linejoin' : 'round',
 			'font-family' : 'Verdana',
 			'font-size' : '19px',
 			'font-weight' : 'bold'
-		}, arr = new Array();
+		};
+		arr = new Array();
 
 		var usa = {};
 
@@ -310,76 +136,62 @@ $(function() {
 			//Create obj
 			var obj = usa[state];
 			obj.attr(attributes);
-
-			if (stateModes[i] == 'OFF') {
-				boxattrs = {
-					'cursor' : 'default',
-					'fill' : offColor,
-					stroke : offStrokeColor
-				};
-			} else {
-				boxattrs = {
-					'cursor' : 'pointer',
-					'fill' : stateColors[i],
-					stroke : strokeColor,
-					'id' : i
-				};
-			}
-
-			obj.push(r.path(usamappaths[state].path).attr(boxattrs));
-			obj.push(r.text(usamappaths[state].textX, usamappaths[state].textY, usamappaths[state].text).attr({
-				"font-family" : "Arial, sans-serif",
-				"font-weight" : "bold",
-				"font-size" : "14",
-				"fill" : abbrColor,
+			
+			var stateData = usamappaths[state];
+			stateNames[i] = stateData.name;
+			
+			boxattrs = {
 				'cursor' : 'pointer',
-				'z-index' : 1000,
-				'dy' : 0
+				'fill'   : stateColor,
+				'stroke' : strokeColor,
+				'id'     : i
+			};
+
+			obj.push(r.path(stateData.path).attr(boxattrs));
+			obj.push(r.text(stateData.textX, stateData.textY, stateData.text).attr({
+				"font-family" : "Open Sans, sans-serif",
+				"font-weight" : "bold",
+				"font-size"   : "14",
+				"fill"        : abbrColor,
+				'cursor'      : 'pointer',
+				'z-index'     : 1000,
+				'dy'          : 0
 			}));
 
-			if (stateModes[i] == 'OFF') {
-				obj.toFront();
-			}
-
 			obj[0].node.id = i;
-			//obj[0].toBack();
 			obj[1].toFront();
 
 			shapeAr.push(obj[0]);
 
-			var hitArea = r.path(usamappaths[state].path).attr({
+			var hitArea = r.path(stateData.path).attr({
 				fill : "#f00",
 				"stroke-width" : 0,
 				"opacity" : 0,
-				'cursor' : stateModes[i] == 'OFF' ? 'default' : 'pointer'
+				'cursor' : 'pointer'
 			});
 
 			hitArea.node.id = i;
-
+			
 			hitArea.mouseover(function(e) {
 
 				e.stopPropagation();
 
 				var id = $(this.node).attr('id');
 
-				if (stateModes[id] != 'OFF') {
-
-					//Animate if not already the current state
-					if (shapeAr[id] != current) {
-						shapeAr[id].animate({
-							fill : stateOverColors[id]
-						}, 500);
-					}
-
-					//tooltip
-					$('#map').next('.point').remove();
-					$('#map').after($('<div />').addClass('point'));
-					$('.point').html(stateNames[id]).css({
-						'left' : mouseX - 50,
-						'top' : mouseY - 40
-					}).fadeIn();
-
+				//Animate if not already the current state
+				if (shapeAr[id] != current) {
+					shapeAr[id].animate({
+						fill : hoverColor
+					}, 500);
 				}
+
+				//tooltip
+				$('#map').next('.tooltip').remove();
+				$('#map').after($('<div />').addClass('tooltip'));
+				$('.tooltip').html(stateNames[id]).css({
+					'left' : mouseX - 50,
+					'top' : mouseY - 40
+				}).fadeIn();
 
 			});
 
@@ -392,11 +204,11 @@ $(function() {
 					//Animate if not already the current state
 					if (shapeAr[id] != current) {
 						shapeAr[id].animate({
-							fill : stateColors[id]
+							fill : stateColor
 						}, 500);
 					}
 
-					$('#map').next('.point').remove();
+					$('#map').next('.tooltip').remove();
 
 				}
 
@@ -481,7 +293,7 @@ $(function() {
 			mouseY = 0;
 		}
 
-		$('#map').next('.point').css({
+		$('#map').next('.tooltip').css({
 			left : mouseX - 50,
 			top : mouseY - 40
 		});
