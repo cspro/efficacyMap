@@ -1,4 +1,4 @@
-var usamappaths = {
+var stateData = {
 	alabama: {
 		name: 'Alabama',
 		text: 'AL',
@@ -408,4 +408,4 @@ var usamappaths = {
 	}
 		
 	
-}
+};

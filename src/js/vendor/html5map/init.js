@@ -1,23 +1,7 @@
 $(function() {
 
 	var stateNames = new Array();
-	var stateURLs = new Array();
 	var stateModes = new Array();
-	var stateColors = new Array();
-	var stateOverColors = new Array();
-	var stateClickedColors = new Array();
-	var stateText = new Array();
-
-	var pinText = new Array();
-	var pinNames = new Array();
-	var pinUrls = new Array();
-	var pinX = new Array();
-	var pinY = new Array();
-	var pinColors = new Array();
-	var pinOverColors = new Array();
-	var pinClickedColors = new Array();
-
-	var offColor, strokeColor, offStrokeColor, abbrColor, mapWidth, mapHeight, useText, useTextAtBottom, textAreaWidth, textAreaPadding, win, winWidth, r, ratio, isMobile, pinSize, responsive, useParameterInUrl;
 
 	var mouseX = 0;
 	var mouseY = 0;
@@ -27,27 +11,25 @@ $(function() {
 	// Detect if the browser supports ajax.
 	var hasAjax = jQuery.support.ajax;
 
-	stateColor = '#9d1348';
-	hoverColor = '#ca2f45';
-	strokeColor = '#ffffff';
-	abbrColor = '#ffffff';
-	mapWidth = 1000;
-	mapHeight = 550;
-	textAreaWidth = 300;
-	textAreaPadding = 10;
-	textAreaHeight = 300;
-	responsive = true;
-	useParameterInUrl = false;
+	var stateColor = '#9d1348';
+	var hoverColor = '#ca2f45';
+	var strokeColor = '#ffffff';
+	var abbrColor = '#ffffff';
+	var mapWidth = 1000;
+	var mapHeight = 550;
+	var textAreaWidth = 300;
+	var textAreaPadding = 10;
+	var textAreaHeight = 300;
+	var responsive = true;
+	var useParameterInUrl = false;
 	
-	ratio = mapWidth / mapHeight;
-	startingMapWidth = mapWidth;
+	var ratio = mapWidth / mapHeight;
+	var startingMapWidth = mapWidth;
 	
-	mapWidth = parseFloat(mapWidth, 10);
-	startingMapWidth = mapWidth;
-	mapHeight = mapWidth / ratio;
+	var win = $(window);
+	var winWidth = win.width();
 	
-	win = $(window);
-	winWidth = win.width();
+	var r; // Raphael object
 
 	setTimeout(function() {
 		createMap();
@@ -59,7 +41,8 @@ $(function() {
 
 		//start map
 		r = new ScaleRaphael('map', 930, 590); 
-		attributes = {
+		
+		var attributes = {
 			fill : '#d9d9d9',
 			cursor : 'pointer',
 			stroke : strokeColor,
@@ -69,34 +52,29 @@ $(function() {
 			'font-size' : '19px',
 			'font-weight' : 'bold'
 		};
-		arr = new Array();
 
-		var boxattrs = {
+		var shapeAttrs = {
 			'cursor' : 'pointer',
-			'fill' : "#fff"
+			'fill'   : stateColor,
+			'stroke' : strokeColor,
 		};
 		
 		var i = 0;
 
-		for (var state in usamappaths) {
+		for (var stateId in stateData) {
 			
 			//Create obj
-			var obj = r.set();
-			obj.attr(attributes);
+			var raphaelSet = r.set();
+			raphaelSet.attr(attributes);
 			
-			var stateData = usamappaths[state];
-			stateNames[i] = stateData.name;
-			stateModes[i] = stateData.disabled ? "OFF" : "ON";
+			var stateObj = stateData[stateId];
+			stateNames[i] = stateObj.name;
+			stateModes[i] = stateObj.disabled ? "OFF" : "ON";
 			
-			boxattrs = {
-				'cursor' : 'pointer',
-				'fill'   : stateColor,
-				'stroke' : strokeColor,
-				'id'     : i
-			};
+			shapeAttrs.id =	'id';
 
-			obj.push(r.path(stateData.path).attr(boxattrs));
-			obj.push(r.text(stateData.textX, stateData.textY, stateData.text).attr({
+			raphaelSet.push(r.path(stateObj.path).attr(shapeAttrs));
+			raphaelSet.push(r.text(stateObj.textX, stateObj.textY, stateObj.text).attr({
 				"font-family" : "Open Sans, sans-serif",
 				"font-weight" : "bold",
 				"font-size"   : "14",
@@ -106,12 +84,12 @@ $(function() {
 				'dy'          : 0
 			}));
 
-			obj[0].node.id = i;
-			obj[1].toFront();
+			raphaelSet[0].node.id = i;
+			raphaelSet[1].toFront();
 
-			shapeAr.push(obj[0]);
+			shapeAr.push(raphaelSet[0]);
 
-			var hitArea = r.path(stateData.path).attr({
+			var hitArea = r.path(stateObj.path).attr({
 				fill : "#f00",
 				"stroke-width" : 0,
 				"opacity" : 0,
@@ -188,12 +166,6 @@ $(function() {
 
 					current = shapeAr[id];
 
-					//change "_self" to "_blank" if using in WP iframe
-					if (useParameterInUrl) {
-						window.open(stateText[id], '_self');
-					} else {
-						window.open(stateURLs[id], '_self');
-					}
 				}
 			});
 
