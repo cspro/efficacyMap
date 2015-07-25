@@ -63,9 +63,36 @@
 	
 	app.controller('MainCtrl', function($rootScope, $scope, $location, $timeout, $dataService) {
 		
-		this.msg = "Competency message";
+		$scope.stateConfig = stateConfig; //$dataService.getData();
+		$scope.currState = stateConfig['california'];
 		
-		this.comps = $dataService.getData();
+		$scope.onCloseModal = function() {
+			$scope.showModal = false;
+		};
+		
+		
+		$scope.onStateSelect = function() {
+			var attributes = {
+				'fill' : '#666',
+				'stroke-width' : 0,
+				'font-family' : 'Verdana',
+				'font-size' : '19px',
+				'font-weight' : 'bold'
+			};
+			if ($scope.rState) {
+				$scope.rState.clear();
+			} else {
+				$scope.rState = new Raphael('stateMap', 300, 300);
+			}
+			var path = $scope.currState.path;
+			var shape = $scope.rState.path(path).attr(attributes);
+			if ($scope.currState.transform) {
+				shape.transform($scope.currState.transform);
+			}
+			shape.glow({'width': 15, 'opacity': 0.15, 'fill': true});
+			$scope.showModal = true;
+		};
+		
 		
 		this.onLinkClick = function(event, somedata) {
 			event.preventDefault();

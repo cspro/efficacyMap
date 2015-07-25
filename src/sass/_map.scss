@@ -1,10 +1,6 @@
 /* ------ map
 -----------------------------------------------*/
 
-#map {
-  float:left;
-  clear:both;
-}
 .tooltip {
   position:fixed;
   display:none;
@@ -35,16 +31,29 @@
   position: relative;
   font-size: 12px;
   line-height: 16px;
-  h1, h2, h3, h4, h5, h6{ margin-bottom:10px; font-weight:normal; }
-  h1{ font-size:26px; line-height:32px; }
-  p, ul{margin-bottom:10px;}
-  ul{
+  h1, h2, h3, h4, h5, h6 { 
+    margin-bottom:10px; 
+    font-weight:normal; 
+  }
+  h1 { 
+    font-size:26px; 
+    line-height:32px; 
+  }
+  p, ul {
+    margin-bottom:10px;
+  }
+  ul {
     margin-left: 30px;
   }
   img {
     float: left;
     padding-right: 5px;
     padding-top: 2px;
+  }
+  #map {
+    float: left;
+    clear: both;
+    margin-left: -20px;
   }
 }
 

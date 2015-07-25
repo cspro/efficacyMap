@@ -8,9 +8,6 @@ $(function() {
 	var current = null;
 	var isPin = false;
 
-	// Detect if the browser supports ajax.
-	var hasAjax = jQuery.support.ajax;
-
 	var stateColor = '#9d1348';
 	var hoverColor = '#ca2f45';
 	var strokeColor = '#ffffff';
@@ -33,7 +30,7 @@ $(function() {
 
 	setTimeout(function() {
 		createMap();
-	}, 200);
+	}, 500);
 
 	function createMap() {
 
@@ -43,9 +40,9 @@ $(function() {
 		r = new ScaleRaphael('map', 930, 590); 
 		
 		var attributes = {
-			fill : '#d9d9d9',
-			cursor : 'pointer',
-			stroke : strokeColor,
+			'fill' : '#d9d9d9',
+			'cursor' : 'pointer',
+			'stroke' : strokeColor,
 			'stroke-width' : 2,
 			'stroke-linejoin' : 'round',
 			'font-family' : 'Verdana',
@@ -61,20 +58,20 @@ $(function() {
 		
 		var i = 0;
 
-		for (var stateId in stateData) {
+		for (var stateId in stateConfig) {
 			
 			//Create obj
 			var raphaelSet = r.set();
 			raphaelSet.attr(attributes);
 			
-			var stateObj = stateData[stateId];
+			var stateObj = stateConfig[stateId];
 			stateNames[i] = stateObj.name;
 			stateModes[i] = stateObj.disabled ? "OFF" : "ON";
 			
 			shapeAttrs.id =	'id';
 
 			raphaelSet.push(r.path(stateObj.path).attr(shapeAttrs));
-			raphaelSet.push(r.text(stateObj.textX, stateObj.textY, stateObj.text).attr({
+			raphaelSet.push(r.text(stateObj.textX, stateObj.textY, stateObj.id).attr({
 				"font-family" : "Open Sans, sans-serif",
 				"font-weight" : "bold",
 				"font-size"   : "14",
@@ -145,10 +142,6 @@ $(function() {
 				var id = $(this.node).attr('id');
 
 				if (stateModes[id] != 'OFF') {
-					//Reset scrollbar
-					var t = $('#text')[0];
-					t.scrollLeft = 0;
-					t.scrollTop = 0;
 
 					//Animate previous state out
 					if (current) {

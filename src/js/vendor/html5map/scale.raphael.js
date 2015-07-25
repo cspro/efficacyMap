@@ -75,7 +75,7 @@
       if (clipping){
         newWidth = w;
         newHeight = h;
-      }
+      };
       
       wrapper.style.width = newWidth + "px";
       wrapper.style.height = newHeight + "px";
@@ -86,11 +86,11 @@
         wrapper.style.left = parseInt((w - newWidth) / 2) + "px";
         wrapper.style.top = parseInt((h - newHeight) / 2) + "px";
       }
-    }
+    };
     
     paper.scaleAll = function(amount){
       paper.changeSize(width * amount, height * amount);
-    }
+    };
     
     paper.changeSize(width, height);
     
@@ -98,5 +98,5 @@
     paper.h = height;
     
     return paper;
-  }
+  };
 })();

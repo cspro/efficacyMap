@@ -1,4 +1,5 @@
 $neutralBg   : #bbbbbb;
+$darkBg      : #454545;
 $mainBg      : #ffffff;
 $textColor   : #333333;
 $headerColor : #333333;
@@ -88,6 +89,40 @@ img, area, map {
   overflow: hidden; 
   background-color: $mainBg;  
 }
+.header {
+  width: 100%;
+  background-color: $darkBg;
+  padding: 1em 0;
+  h1 {
+    span {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    max-width: 800px;
+    margin: 0 auto;
+    display: block;
+    color: #eee;
+    font-weight: normal;
+    position: relative;
+    font-size: 18px;
+  }
+}
+
+.upperContent {
+  padding: 1em 0;
+  margin: 0.5em auto 1em;
+  max-width: 800px;
+  .prompt {
+    float: left;
+    margin-right: 1em;
+    color: #333;
+  }
+  .selector {
+    float: right;
+    display: inline-block;
+  }
+}
+
 .container {
   position: absolute;
   top: 0;
@@ -126,4 +161,5 @@ img, area, map {
 }
 
 @import 'map';
+@import 'modal';
 

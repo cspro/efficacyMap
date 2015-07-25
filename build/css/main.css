@@ -97,6 +97,40 @@ img, area, map {
   background-color: #ffffff;
 }
 
+.header {
+  width: 100%;
+  background-color: #454545;
+  padding: 1em 0;
+}
+.header h1 {
+  max-width: 800px;
+  margin: 0 auto;
+  display: block;
+  color: #eee;
+  font-weight: normal;
+  position: relative;
+  font-size: 18px;
+}
+.header h1 span {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.upperContent {
+  padding: 1em 0;
+  margin: 0.5em auto 1em;
+  max-width: 800px;
+}
+.upperContent .prompt {
+  float: left;
+  margin-right: 1em;
+  color: #333;
+}
+.upperContent .selector {
+  float: right;
+  display: inline-block;
+}
+
 .container {
   position: absolute;
   top: 0;
@@ -125,11 +159,6 @@ img, area, map {
 /* Large devices (large desktops, 1200px and up) */
 /* ------ map
 -----------------------------------------------*/
-#map {
-  float: left;
-  clear: both;
-}
-
 .tooltip {
   position: fixed;
   display: none;
@@ -183,6 +212,97 @@ img, area, map {
   float: left;
   padding-right: 5px;
   padding-top: 2px;
+}
+.mapWrapper #map {
+  float: left;
+  clear: both;
+  margin-left: -20px;
+}
+
+.modal {
+  display: block;
+  height: 0;
+  position: absolute;
+  overflow: visible;
+}
+
+/* ==================================
+ * Override Bootstrap styles 
+ * ================================ */
+@media screen and (min-width: 768px) {
+  .modal-dialog {
+    width: auto;
+    padding: 0 3em;
+    margin-bottom: 1em;
+  }
+}
+.modal-backdrop.in {
+  opacity: 0.75;
+  filter: alpha(opacity=75);
+}
+
+.modal-content {
+  overflow: hidden;
+  border-radius: 8px;
+  color: #fff !important;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal-header {
+  min-height: 16.428571429px;
+  padding: 0.5em 1em;
+  border-bottom: none;
+  background-color: rgba(157, 19, 72, 0.75);
+}
+
+.modal-title {
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.modal-header .close {
+  margin-top: 1px;
+}
+
+.modal-body {
+  padding: 0;
+  min-height: 300px;
+}
+
+.modal-footer {
+  margin-top: 0;
+  padding: 0.5em;
+  background-color: rgba(157, 19, 72, 0.75);
+  border-top: none;
+}
+
+/* ================================== */
+@media (min-width: 768px) {
+  .modal-dialog .icon {
+    display: block !important;
+  }
+  .modal-dialog .modal-header h2, .modal-dialog .modal-header h3 {
+    margin-left: 110px !important;
+  }
+  .modal-dialog .modalRowContent {
+    margin-left: 110px !important;
+  }
+}
+/* ================================== */
+#stateMap {
+  width: 300px;
+  height: 300px;
+  float: left;
+}
+
+.stateContent {
+  padding: 1em 1em 1em 0;
+}
+.stateContent ul {
+  margin: 0;
+}
+.stateContent ul li {
+  list-style-type: none;
 }
 
 /*# sourceMappingURL=main.css.map */

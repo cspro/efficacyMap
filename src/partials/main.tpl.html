@@ -1,6 +1,45 @@
+<div class="header">
+	<h1><span>MyLab™ &amp; Mastering™:</span> Efficacy Case Studies</h1>
+</div>
+
+<div class="upperContent">
+	<p class="prompt">Select a state by clicking on the map, or use the dropdown to the right.</p>
+	<div class="selector">
+		<label for="stateSelector">State:</label>
+		<select name="stateSelector" ng-options="state as state.name for state in stateConfig" ng-model="currState" ng-change="onStateSelect()"></select>
+	</div>
+</div>
+
 <div id="container" ng-controller="MainCtrl as mainCtrl">
 	<div class="mapWrapper">
 		<div id="map"></div>
 		<div id="text"></div>
 	</div>
 </div>
+
+<div id="myModal" class="modal" style="display: block;" role="dialog" ng-show="showModal">
+	<div class="modal-backdrop fade in" style="height: 100%"></div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="onCloseModal()">&times;</button>
+				<h4 class="modal-title">{{currState.name}}</h4>
+			</div>
+			<div class="modal-body">
+				<div id="stateMap"></div>
+				<div class="stateContent">
+					<p>Here is text about the state.</p>
+					<ul>
+						<li>List Item One</li>
+						<li>List Item Two</li>
+						<li>List Item Three</li>
+					</ul>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" ng-click="onCloseModal()">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
