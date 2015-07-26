@@ -107,10 +107,19 @@ img, area, map {
     font-size: 18px;
   }
 }
-
+.upperWrapper {
+  background: #dbdbdb; /* Old browsers */
+  background: -moz-linear-gradient(top, #dbdbdb 0%, #ffffff 50%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dbdbdb), color-stop(50%,#ffffff)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #dbdbdb 0%,#ffffff 50%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #dbdbdb 0%,#ffffff 50%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #dbdbdb 0%,#ffffff 50%); /* IE10+ */
+  background: linear-gradient(to bottom, #dbdbdb 0%,#ffffff 50%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dbdbdb', endColorstr='#ffffff',GradientType=0 ); /* IE6 */
+}
 .upperContent {
   padding: 1em 0;
-  margin: 0.5em auto 1em;
+  margin: 0 auto 1.5em;
   max-width: 800px;
   .prompt {
     float: left;
@@ -123,10 +132,11 @@ img, area, map {
   }
 }
 
-.container {
-  position: absolute;
-  top: 0;
-  left: 0;
+#container {
+  clear: both;
+  background: url("../images/modal_divider.png") top left no-repeat;
+  background-size: 100% 6px;
+  padding-top: 10px;
 }
 .loading {
   display: block;

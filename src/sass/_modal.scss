@@ -1,5 +1,5 @@
 $modalBgColor: rgba(0,0,0,0.75);
-$modalHeaderBgColor: rgba(157, 19, 72, 0.75);
+$modalHeaderBgColor: #454545; //rgba(157, 19, 72, 0.75);
 $iconIndent: 110px;
 
 .modal {
@@ -38,26 +38,59 @@ $iconIndent: 110px;
   min-height: 16.428571429px;
   padding: 0.5em 1em;
   border-bottom: none;
-  background-color: $modalHeaderBgColor;
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #dddddd 50%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#dddddd)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ffffff 0%,#dddddd 50%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffffff 0%,#dddddd 50%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffffff 0%,#dddddd 50%); /* IE10+ */
+  background: linear-gradient(to bottom, #ffffff 0%,#dddddd 50%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dddddd',GradientType=0 ); /* IE6 */
+
 }
 
 .modal-title {
   text-transform: uppercase;
-  color: #ffffff
+  color: #666;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #fff;
 }
 
 .modal-header .close {
-	margin-top: 1px;
+  margin-top: 1px;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
+  &:hover, &:active {
+    opacity: 1;
+  }
 }
 .modal-body {
-	padding: 0;
-	min-height: 300px;
+  padding: 0;
+  min-height: 300px;
 }
 .modal-footer {
   margin-top: 0;
   padding: 0.5em;
-  background-color: $modalHeaderBgColor;
+  background-color: transparent;
   border-top: none;
+  button {
+    background-color: rgba(0,0,0,0.5);
+    border-color: #666;
+    color: rgba(255,255,255,0.75);
+    padding: 3px 6px;
+    text-transform: uppercase;
+    font-size: 12px;
+    &:hover {
+      background-color: rgba(0,0,0,0.75);
+      border-color: $red3;
+      color: rgba(255,255,255,0.95);
+    }
+    &:active, &:focus {
+      background-color: rgba(0,0,0,0.75);
+      border-color: rgba(255,255,255,1);
+      color: rgba(255,255,255,1);
+    }
+  }
 }
 
 /* ================================== */
@@ -86,12 +119,52 @@ $iconIndent: 110px;
   float: left;
 }
 
+::-webkit-scrollbar-track {
+   background: rgba(0,0,0,0.25);
+}
+::-webkit-scrollbar {
+   background: #333;
+}
+::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 10px;
+}
 .stateContent {
-  padding: 1em 1em 1em 0;
+  padding: 2em 2px 1em 0;
+  margin-left: 300px;
+  
+  h4 {
+    color: #fff;
+    margin-bottom: 0.5em;
+  }
   ul {
     margin: 0;
+    padding: 0 1em 0 0;
+    max-height: 400px;
+    overflow: auto;
     li {
       list-style-type: none;
+      margin-bottom: 1em;
+      .institution {
+        font-weight: bold;
+        color: $red2;
+        margin-bottom: -0.25em;
+      }
+      .location {
+        font-size: 85%;
+        margin-bottom: 0.25em;
+      }
+      .outcome {
+        font-size: 85%;
+        color: #fff;
+      }
+      .link {
+        font-size: 85%;
+        color: $red4;
+        &:hover {
+          color: $red5;
+        }
+      }
     }
   }
 }

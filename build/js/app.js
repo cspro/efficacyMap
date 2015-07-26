@@ -64,17 +64,17 @@
 	app.controller('MainCtrl', function($rootScope, $scope, $location, $timeout, $dataService) {
 		
 		$scope.stateConfig = stateConfig; //$dataService.getData();
-		$scope.currState = stateConfig['california'];
+		$scope.currState = stateConfig['newYork'];
 		
 		$scope.onCloseModal = function() {
 			$scope.showModal = false;
 		};
 		
-		
-		$scope.onStateSelect = function() {
+		$scope.drawState = function(state) {
 			var attributes = {
-				'fill' : '#666',
-				'stroke-width' : 0,
+				'fill' : '#b9204b',
+				'stroke-width' : 1,
+				'stroke' : '#ffffff',
 				'font-family' : 'Verdana',
 				'font-size' : '19px',
 				'font-weight' : 'bold'
@@ -84,15 +84,23 @@
 			} else {
 				$scope.rState = new Raphael('stateMap', 300, 300);
 			}
-			var path = $scope.currState.path;
+			var path = state.path;
 			var shape = $scope.rState.path(path).attr(attributes);
-			if ($scope.currState.transform) {
-				shape.transform($scope.currState.transform);
+			if (state.transform) {
+				shape.transform(state.transform);
 			}
-			shape.glow({'width': 15, 'opacity': 0.15, 'fill': true});
+			shape.glow({'width': 15, 'opacity': 0.5, 'fill': true});
+		};
+		
+		$scope.onStateSelect = function() {
+			$scope.drawState($scope.currState);
+			//FIXME: get from service
+			$scope.institutions = stateData[$scope.currState.id]['institutions'];
 			$scope.showModal = true;
 		};
 		
+		$scope.institutions = stateData[$scope.currState.id]['institutions'];
+		$scope.drawState($scope.currState);
 		
 		this.onLinkClick = function(event, somedata) {
 			event.preventDefault();

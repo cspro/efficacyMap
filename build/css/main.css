@@ -116,9 +116,28 @@ img, area, map {
   font-size: 18px;
 }
 
+.upperWrapper {
+  background: #dbdbdb;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #dbdbdb 0%, #ffffff 50%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dbdbdb), color-stop(50%, #ffffff));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #dbdbdb 0%, #ffffff 50%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #dbdbdb 0%, #ffffff 50%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #dbdbdb 0%, #ffffff 50%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #dbdbdb 0%, #ffffff 50%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dbdbdb', endColorstr='#ffffff',GradientType=0 );
+  /* IE6 */
+}
+
 .upperContent {
   padding: 1em 0;
-  margin: 0.5em auto 1em;
+  margin: 0 auto 1.5em;
   max-width: 800px;
 }
 .upperContent .prompt {
@@ -131,10 +150,11 @@ img, area, map {
   display: inline-block;
 }
 
-.container {
-  position: absolute;
-  top: 0;
-  left: 0;
+#container {
+  clear: both;
+  background: url("../images/modal_divider.png") top left no-repeat;
+  background-size: 100% 6px;
+  padding-top: 10px;
 }
 
 .loading {
@@ -252,16 +272,38 @@ img, area, map {
   min-height: 16.428571429px;
   padding: 0.5em 1em;
   border-bottom: none;
-  background-color: rgba(157, 19, 72, 0.75);
+  background: #ffffff;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #dddddd 50%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(50%, #dddddd));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ffffff 0%, #dddddd 50%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffffff 0%, #dddddd 50%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffffff 0%, #dddddd 50%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #ffffff 0%, #dddddd 50%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dddddd',GradientType=0 );
+  /* IE6 */
 }
 
 .modal-title {
   text-transform: uppercase;
-  color: #ffffff;
+  color: #666;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #fff;
 }
 
 .modal-header .close {
   margin-top: 1px;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
+}
+.modal-header .close:hover, .modal-header .close:active {
+  opacity: 1;
 }
 
 .modal-body {
@@ -272,8 +314,26 @@ img, area, map {
 .modal-footer {
   margin-top: 0;
   padding: 0.5em;
-  background-color: rgba(157, 19, 72, 0.75);
+  background-color: transparent;
   border-top: none;
+}
+.modal-footer button {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-color: #666;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 3px 6px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.modal-footer button:hover {
+  background-color: rgba(0, 0, 0, 0.75);
+  border-color: #ca2f45;
+  color: rgba(255, 255, 255, 0.95);
+}
+.modal-footer button:active, .modal-footer button:focus {
+  background-color: rgba(0, 0, 0, 0.75);
+  border-color: white;
+  color: white;
 }
 
 /* ================================== */
@@ -295,14 +355,56 @@ img, area, map {
   float: left;
 }
 
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+::-webkit-scrollbar {
+  background: #333;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 10px;
+}
+
 .stateContent {
-  padding: 1em 1em 1em 0;
+  padding: 2em 2px 1em 0;
+  margin-left: 300px;
+}
+.stateContent h4 {
+  color: #fff;
+  margin-bottom: 0.5em;
 }
 .stateContent ul {
   margin: 0;
+  padding: 0 1em 0 0;
+  max-height: 400px;
+  overflow: auto;
 }
 .stateContent ul li {
   list-style-type: none;
+  margin-bottom: 1em;
+}
+.stateContent ul li .institution {
+  font-weight: bold;
+  color: #b9204b;
+  margin-bottom: -0.25em;
+}
+.stateContent ul li .location {
+  font-size: 85%;
+  margin-bottom: 0.25em;
+}
+.stateContent ul li .outcome {
+  font-size: 85%;
+  color: #fff;
+}
+.stateContent ul li .link {
+  font-size: 85%;
+  color: #e04854;
+}
+.stateContent ul li .link:hover {
+  color: #e8c7c4;
 }
 
 /*# sourceMappingURL=main.css.map */

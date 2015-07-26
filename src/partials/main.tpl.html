@@ -2,11 +2,13 @@
 	<h1><span>MyLab™ &amp; Mastering™:</span> Efficacy Case Studies</h1>
 </div>
 
-<div class="upperContent">
-	<p class="prompt">Select a state by clicking on the map, or use the dropdown to the right.</p>
-	<div class="selector">
-		<label for="stateSelector">State:</label>
-		<select name="stateSelector" ng-options="state as state.name for state in stateConfig" ng-model="currState" ng-change="onStateSelect()"></select>
+<div class="upperWrapper">
+	<div class="upperContent">
+		<p class="prompt">Select a state by clicking on the map, or use the dropdown to the right.</p>
+		<div class="selector">
+			<label for="stateSelector">State:</label>
+			<select name="stateSelector" ng-options="state as state.name for state in stateConfig" ng-model="currState" ng-change="onStateSelect()"></select>
+		</div>
 	</div>
 </div>
 
@@ -28,11 +30,14 @@
 			<div class="modal-body">
 				<div id="stateMap"></div>
 				<div class="stateContent">
-					<p>Here is text about the state.</p>
+					<h4>{{currState.name}} Higher Education Partners</h4>
 					<ul>
-						<li>List Item One</li>
-						<li>List Item Two</li>
-						<li>List Item Three</li>
+						<li ng-repeat="item in institutions">
+							<div class="institution">{{item.institution}}</div>
+							<div class="location">{{item.location}}, {{currState.id}}</div>
+							<div class="outcome">{{item.outcome}}</div>
+							<a class="link" href="{{item.link}}">View Project &raquo;</a>
+						</li>
 					</ul>
 				</div>
 			</div>
