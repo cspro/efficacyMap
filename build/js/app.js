@@ -27,6 +27,10 @@
 		$rootScope.$on('$locationChangeStart', function(event, toState) {
 			console.log("$locationChangeStart: " + event);
 		});
+		
+
+		
+		
 	});
 	
 	app.service('$dataService', function() {
@@ -64,6 +68,9 @@
 	app.controller('MainCtrl', function($rootScope, $scope, $location, $timeout, $dataService) {
 		
 		$scope.stateConfig = stateConfig; //$dataService.getData();
+		angular.forEach($scope.stateConfig, function(value, key) {
+			value['key'] = key;
+		});
 		$scope.currState = stateConfig['newYork'];
 		
 		$scope.onCloseModal = function() {
@@ -95,19 +102,35 @@
 		$scope.onStateSelect = function() {
 			$scope.drawState($scope.currState);
 			//FIXME: get from service
-			$scope.institutions = stateData[$scope.currState.id]['institutions'];
+			$scope.institutions = stateData[$scope.currState.key]['institutions'];
 			$scope.showModal = true;
 		};
 		
-		$scope.institutions = stateData[$scope.currState.id]['institutions'];
+		$scope.onStateClick = function(state) {
+			$scope.currState = state;
+			$scope.drawState(state);
+			$scope.institutions = stateData[state.key]['institutions'];
+			$scope.showModal = true;
+		};
+
+		$scope.$watch('currState', function(newValue, oldValue) {
+			console.log('currState watcher. newValue: ' + newValue);
+		});
+		
+		$scope.$on('stateClick', function(e, data) {
+			console.log("onStateClick. data: " + data);
+			e.preventDefault();
+			$scope.currState = $scope.stateConfig[data];
+			$scope.onStateSelect();
+		});
+		
+		$scope.institutions = stateData[$scope.currState.key]['institutions'];
 		$scope.drawState($scope.currState);
 		
-		this.onLinkClick = function(event, somedata) {
-			event.preventDefault();
-			$timeout(function() {
-				$location.path("/somepath/" + somedata.id);
-			}, 10);
-		};
+		setTimeout(function() {
+			createMap($scope);
+		}, 100);
+
 		
 	});
 	
