@@ -1,13 +1,11 @@
-	var stateNames = new Array();
-	var stateModes = new Array();
-
 	var mouseX = 0;
 	var mouseY = 0;
 	var current = null;
 	var isPin = false;
 
-	var stateColor = '#9d1348';
-	var hoverColor = '#ca2f45';
+	var stateColor = '#364395';
+	var disabledColor = '#ccc';
+	var hoverColor = '#006da4';
 	var strokeColor = '#ffffff';
 	var abbrColor = '#ffffff';
 	var mapWidth = 1000;
@@ -28,7 +26,7 @@
 
 	function createMap(scope, stateConfig) {
 
-		var shapeAr = [];
+		var shapes = [];
 		var stateIds = {};
 
 		//start map
@@ -47,9 +45,9 @@
 
 		var shapeAttrs = {
 			'cursor' : 'pointer',
-			'fill'   : stateColor,
 			'stroke' : strokeColor,
 		};
+		
 		
 		var i = 0;
 
@@ -60,10 +58,10 @@
 			raphaelSet.attr(attributes);
 			
 			var stateObj = stateConfig[stateId];
-			stateNames[i] = stateObj.name;
-			stateModes[i] = stateObj.disabled ? "OFF" : "ON";
 			
-			shapeAttrs.id =	'id';
+			shapeAttrs['id'] =	'id';
+			shapeAttrs['fill'] = stateObj.enabled ? stateColor : disabledColor;
+			shapeAttrs['opacity'] = stateObj.enabled ? (stateObj.count * 0.1) + 0.5 : 1;
 			stateIds[i] = stateId;
 
 			raphaelSet.push(r.path(stateObj.path).attr(shapeAttrs));
@@ -77,29 +75,30 @@
 				'dy'          : 0
 			}));
 
-			raphaelSet[0].node.id = i;
+			raphaelSet[0].node.id = stateId;
 			raphaelSet[1].toFront();
 
-			shapeAr.push(raphaelSet[0]);
+			shapes[stateId] = raphaelSet[0];
 
 			var hitArea = r.path(stateObj.path).attr({
 				'fill' : "#f00",
 				'stroke-width' : 0,
 				'opacity' : 0,
-				'cursor' : 'pointer'
+				'cursor' : stateObj.enabled ? 'pointer' : 'not-allowed'
 			});
 
-			hitArea.node.id = i;
+			hitArea.node.id = stateId;
 			
 			hitArea.mouseover(function(e) {
 
 				e.stopPropagation();
 
 				var id = $(this.node).attr('id');
+				var stateObj = stateConfig[id];
 
 				//Animate if not already the current state
-				if (shapeAr[id] != current) {
-					shapeAr[id].animate({
+				if (stateObj.enabled) {
+					shapes[id].animate({
 						fill : hoverColor
 					}, 500);
 				}
@@ -107,7 +106,7 @@
 				//tooltip
 				$('#map').next('.tooltip').remove();
 				$('#map').after($('<div />').addClass('tooltip'));
-				$('.tooltip').html(stateNames[id]).css({
+				$('.tooltip').html(stateObj['name']).css({
 					'left' : mouseX - 50,
 					'top' : mouseY - 40
 				}).fadeIn();
@@ -117,18 +116,15 @@
 			hitArea.mouseout(function(e) {
 
 				var id = $(this.node).attr('id');
+				var stateObj = stateConfig[id];
 
-				if (stateModes[id] != 'OFF') {
-
-					//Animate if not already the current state
-					// if (shapeAr[id] != current) {
-						shapeAr[id].animate({
-							fill : stateColor
-						}, 500);
-					// }
-					$('#map').next('.tooltip').remove();
-
+				if (stateObj.enabled) {
+					shapes[id].animate({
+						fill : stateObj.enabled ? stateColor : disabledColor
+					}, 500);
 				}
+				
+				$('#map').next('.tooltip').remove();
 
 			});
 
@@ -137,9 +133,10 @@
 				e.stopPropagation();
 
 				var id = $(this.node).attr('id');
-				var stateId = stateIds[id];
+				var stateObj = stateConfig[id];
+				var stateId = stateObj[id];
 
-				if (stateModes[id] != 'OFF') {
+				if (stateObj.enabled) {
 
 					//Animate previous state out
 					if (current) {
@@ -150,13 +147,13 @@
 					}
 
 					//Animate next
-					shapeAr[id].animate({
+					shapes[id].animate({
 						fill : hoverColor
 					}, 500);
 
-					current = shapeAr[id];
+					current = shapes[id];
 					
-					scope.onStateClick(stateConfig[stateId]);
+					scope.onStateClick(stateObj);
 					scope.$digest();
 					
 					// $rootScope.$broadcast('stateClick', stateId);

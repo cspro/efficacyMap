@@ -16,6 +16,8 @@
 		this.getStateData = function(id) {
 			if (!this.stateData) {
 				this.stateData = data.stateData;
+				angular.forEach(this.stateData, function(value, key) {
+				});
 			}
 			if (id && this.stateData[id]) {
 				return this.stateData[id];
@@ -26,9 +28,20 @@
 		this.getStateConfig = function(id) {
 			if (!this.stateConfig) {
 				this.stateConfig = data.stateConfig;
+				var stateData = data.stateData;
+				var stateConfigArray = [];
 				angular.forEach(this.stateConfig, function(value, key) {
+					var stateObj = stateData[key];
 					value['key'] = key;
+					value['enabled'] = (stateObj && stateObj['institutions']) ? true : false;
+					if (stateObj && stateObj['institutions']) {
+						value['count'] = stateObj['institutions'].length;
+					} else {
+						value['count'] = 0;
+					}
+					stateConfigArray.push(value);
 				});
+				this.stateConfigArray = stateConfigArray;
 			}
 			if (id && this.stateConfig[id]) {
 				return this.stateConfig[id];
@@ -41,7 +54,11 @@
 	app.controller('MainCtrl', function($rootScope, $scope, $location, $timeout, $dataService) {
 		
 		$scope.stateConfig = $dataService.getStateConfig();
-		
+		$scope.stateConfigArray = [];
+		angular.forEach($scope.stateConfig, function(value, key) {
+			$scope.stateConfigArray.push(value);
+		});
+
 		$scope.onCloseModal = function() {
 			$scope.showModal = false;
 			$scope.currState = null;
@@ -49,7 +66,7 @@
 		
 		$scope.drawState = function(state) {
 			var attributes = {
-				'fill' : '#b9204b',
+				'fill' : '#364395',
 				'stroke-width' : 1,
 				'stroke' : '#ffffff',
 				'font-family' : 'Verdana',

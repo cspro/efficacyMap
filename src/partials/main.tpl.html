@@ -7,7 +7,7 @@
 		<p class="prompt">Select a state by clicking on the map, or use the dropdown to the right.</p>
 		<div class="selector">
 			<label for="stateSelector">State:</label>
-			<select name="stateSelector" ng-options="state as state.name for state in stateConfig" ng-model="currState"></select>
+			<select name="stateSelector" ng-options="state as state.name for state in stateConfigArray | filter:{enabled:true}" ng-model="currState"></select>
 		</div>
 	</div>
 </div>

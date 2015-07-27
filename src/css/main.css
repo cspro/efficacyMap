@@ -330,7 +330,7 @@ img, area, map {
 }
 .modal-footer button:hover {
   background-color: rgba(0, 0, 0, 0.75);
-  border-color: #ca2f45;
+  border-color: #006da4;
   color: rgba(255, 255, 255, 0.95);
 }
 .modal-footer button:active, .modal-footer button:focus {
@@ -392,7 +392,7 @@ img, area, map {
 }
 .stateContent ul li .institution {
   font-weight: bold;
-  color: #b9204b;
+  color: #006da4;
   margin-bottom: -0.25em;
 }
 .stateContent ul li .location {
@@ -405,10 +405,10 @@ img, area, map {
 }
 .stateContent ul li .link {
   font-size: 85%;
-  color: #e04854;
+  color: #0089b7;
 }
 .stateContent ul li .link:hover {
-  color: #e8c7c4;
+  color: #fff;
 }
 
 /*# sourceMappingURL=main.css.map */

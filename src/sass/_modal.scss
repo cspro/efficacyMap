@@ -82,7 +82,7 @@ $iconIndent: 110px;
     font-size: 12px;
     &:hover {
       background-color: rgba(0,0,0,0.75);
-      border-color: $red3;
+      border-color: $color3;
       color: rgba(255,255,255,0.95);
     }
     &:active, &:focus {
@@ -148,7 +148,7 @@ $iconIndent: 110px;
       margin-bottom: 1em;
       .institution {
         font-weight: bold;
-        color: $red2;
+        color: $color3;
         margin-bottom: -0.25em;
       }
       .location {
@@ -161,9 +161,9 @@ $iconIndent: 110px;
       }
       .link {
         font-size: 85%;
-        color: $red4;
+        color: $color5;
         &:hover {
-          color: $red5;
+          color: #fff;
         }
       }
     }
