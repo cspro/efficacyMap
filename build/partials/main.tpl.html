@@ -7,7 +7,7 @@
 		<p class="prompt">Select a state by clicking on the map, or use the dropdown to the right.</p>
 		<div class="selector">
 			<label for="stateSelector">State:</label>
-			<select name="stateSelector" ng-options="state as state.name for state in stateConfig" ng-model="currState" ng-change="onStateSelect()"></select>
+			<select name="stateSelector" ng-options="state as state.name for state in stateConfig" ng-model="currState"></select>
 		</div>
 	</div>
 </div>
@@ -34,7 +34,7 @@
 					<ul>
 						<li ng-repeat="item in institutions">
 							<div class="institution">{{item.institution}}</div>
-							<div class="location">{{item.location}}, {{currState.id}}</div>
+							<div class="location">{{item.location}}, {{currState.abbr}}</div>
 							<div class="outcome">{{item.outcome}}</div>
 							<a class="link" href="{{item.link}}">View Project &raquo;</a>
 						</li>

@@ -181,13 +181,15 @@ img, area, map {
 -----------------------------------------------*/
 .tooltip {
   position: fixed;
-  display: none;
+  display: block;
   padding: 6px 10px;
   background: rgba(0, 0, 0, 0.75);
   font-size: 12px;
   font-weight: bold;
   color: #fff;
   border: 1px solid #262626;
+  z-index: 1000;
+  opacity: 1;
   -moz-border-radius: 4px;
   /* FF1-3.6 */
   -webkit-border-radius: 4px;
@@ -264,6 +266,7 @@ img, area, map {
 .modal-content {
   overflow: hidden;
   border-radius: 8px;
+  border: none;
   color: #fff !important;
   background-color: rgba(0, 0, 0, 0.75);
 }
@@ -274,19 +277,19 @@ img, area, map {
   border-bottom: none;
   background: #ffffff;
   /* Old browsers */
-  background: -moz-linear-gradient(top, #ffffff 0%, #dddddd 50%);
+  background: -moz-linear-gradient(top, #ffffff 0%, #cccccc 70%);
   /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(50%, #dddddd));
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(70%, #cccccc));
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #ffffff 0%, #dddddd 50%);
+  background: -webkit-linear-gradient(top, #ffffff 0%, #cccccc 70%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #ffffff 0%, #dddddd 50%);
+  background: -o-linear-gradient(top, #ffffff 0%, #cccccc 70%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #ffffff 0%, #dddddd 50%);
+  background: -ms-linear-gradient(top, #ffffff 0%, #cccccc 70%);
   /* IE10+ */
-  background: linear-gradient(to bottom, #ffffff 0%, #dddddd 50%);
+  background: linear-gradient(to bottom, #ffffff 0%, #cccccc 70%);
   /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dddddd',GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=0 );
   /* IE6 */
 }
 
@@ -319,7 +322,7 @@ img, area, map {
 }
 .modal-footer button {
   background-color: rgba(0, 0, 0, 0.5);
-  border-color: #666;
+  border-color: #444;
   color: rgba(255, 255, 255, 0.75);
   padding: 3px 6px;
   text-transform: uppercase;
@@ -361,11 +364,12 @@ img, area, map {
 
 ::-webkit-scrollbar {
   background: #333;
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #666;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
 .stateContent {

@@ -1,4 +1,8 @@
-var stateConfig = {
+if (!data) {
+	var data = {};
+}
+
+data.stateConfig = {
 	alabama: {
 		name: 'Alabama',
 		abbr: 'AL',

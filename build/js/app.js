@@ -12,69 +12,39 @@
 			});
 	}]);
 	
-	app.run(function($rootScope, $location) {
-		$rootScope.$on('$routeChangeStart', function(event, next, current) {
-			// event.preventDefault();
-			if (current) {
-				console.log(current.controller + " --> " + next.controller);
-			} else {
-				console.log(next.controller);
-			}
-		});
-		$rootScope.$on('$routeChangeSuccess', function(event, next, current) {
-			console.log("$routeChangeSuccess: " + event);
-		});
-		$rootScope.$on('$locationChangeStart', function(event, toState) {
-			console.log("$locationChangeStart: " + event);
-		});
-		
-
-		
-		
-	});
-	
 	app.service('$dataService', function() {
-		this.getData = function() {
-			if (!this.data) {
-				this.dataMap = {};
-				var rawData = [];
-				angular.forEach(rawData, function(comp, key) {
+		this.getStateData = function(id) {
+			if (!this.stateData) {
+				this.stateData = data.stateData;
+			}
+			if (id && this.stateData[id]) {
+				return this.stateData[id];
+			} else {
+				return this.stateData;
+			}
+		};
+		this.getStateConfig = function(id) {
+			if (!this.stateConfig) {
+				this.stateConfig = data.stateConfig;
+				angular.forEach(this.stateConfig, function(value, key) {
+					value['key'] = key;
 				});
 			}
-			return this.data;
+			if (id && this.stateConfig[id]) {
+				return this.stateConfig[id];
+			} else {
+				return this.stateConfig;
+			}
 		};
-		this.getSomeData = function(someId) {
-			this.getData();
-			return this.dataMap[someId];
-		};
-	});
-	
-	app.controller('RootCtrl', function($rootScope, $timeout, $location) {
-		$scope = $rootScope;
-		$scope.initialized = false;
-		
-		this.onResetClick = function(event) {
-			event.preventDefault();
-			$timeout(function() {
-				$location.path("/somepath");
-			}, 10);
-		};
-		
-		$timeout(function() {
-			$scope.initialized = true;
-		}, 200);
 	});
 	
 	app.controller('MainCtrl', function($rootScope, $scope, $location, $timeout, $dataService) {
 		
-		$scope.stateConfig = stateConfig; //$dataService.getData();
-		angular.forEach($scope.stateConfig, function(value, key) {
-			value['key'] = key;
-		});
-		$scope.currState = stateConfig['newYork'];
+		$scope.stateConfig = $dataService.getStateConfig();
 		
 		$scope.onCloseModal = function() {
 			$scope.showModal = false;
+			$scope.currState = null;
 		};
 		
 		$scope.drawState = function(state) {
@@ -98,48 +68,25 @@
 			}
 			shape.glow({'width': 15, 'opacity': 0.5, 'fill': true});
 		};
-		
-		$scope.onStateSelect = function() {
-			$scope.drawState($scope.currState);
-			//FIXME: get from service
-			$scope.institutions = stateData[$scope.currState.key]['institutions'];
-			$scope.showModal = true;
-		};
-		
+
+		// callback for external map script
 		$scope.onStateClick = function(state) {
 			$scope.currState = state;
-			$scope.drawState(state);
-			$scope.institutions = stateData[state.key]['institutions'];
-			$scope.showModal = true;
 		};
 
-		$scope.$watch('currState', function(newValue, oldValue) {
-			console.log('currState watcher. newValue: ' + newValue);
+		$scope.$watch('currState', function(state) {
+			if (state) {
+				$scope.drawState(state);
+				$scope.institutions = $dataService.getStateData(state.key)['institutions'];
+				$scope.showModal = true;
+			}
 		});
 		
-		$scope.$on('stateClick', function(e, data) {
-			console.log("onStateClick. data: " + data);
-			e.preventDefault();
-			$scope.currState = $scope.stateConfig[data];
-			$scope.onStateSelect();
-		});
-		
-		$scope.institutions = stateData[$scope.currState.key]['institutions'];
-		$scope.drawState($scope.currState);
-		
+		// Call external map script, pass in scope for callback
 		setTimeout(function() {
-			createMap($scope);
+			createMap($scope, $dataService.getStateConfig());
 		}, 100);
 
-		
 	});
 	
-	app.controller('SubCtrl', function($scope, $routeParams, $rootScope, $location, $timeout, $dataService) {
-	
-		var compId = $routeParams.someId;
-		var comp = $dataService.getData(someId);
-	});
-
-	
-		
 })();

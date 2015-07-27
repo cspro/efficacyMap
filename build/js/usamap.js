@@ -26,7 +26,7 @@
 	
 	var r; // Raphael object
 
-	function createMap(scope) {
+	function createMap(scope, stateConfig) {
 
 		var shapeAr = [];
 		var stateIds = {};
@@ -121,12 +121,11 @@
 				if (stateModes[id] != 'OFF') {
 
 					//Animate if not already the current state
-					if (shapeAr[id] != current) {
+					// if (shapeAr[id] != current) {
 						shapeAr[id].animate({
 							fill : stateColor
 						}, 500);
-					}
-
+					// }
 					$('#map').next('.tooltip').remove();
 
 				}

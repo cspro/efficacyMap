@@ -1,4 +1,8 @@
-var stateData = {
+if (!data) {
+	var data = {};
+}
+
+data.stateData = {
 	'newYork' : {
 		'institutions' : [
 			{
