@@ -16,8 +16,6 @@
 		this.getStateData = function(id) {
 			if (!this.stateData) {
 				this.stateData = data.stateData;
-				angular.forEach(this.stateData, function(value, key) {
-				});
 			}
 			if (id && this.stateData[id]) {
 				return this.stateData[id];

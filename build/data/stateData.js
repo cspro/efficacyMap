@@ -3,7 +3,7 @@ if (!data) {
 }
 
 data.stateData = {
-	'newYork' : {
+	'NY' : {
 		'institutions' : [
 			{
 				'id'          : 'MasteringChemistry',   
@@ -50,7 +50,7 @@ data.stateData = {
 			
 		]
 	},
-	'texas' : {
+	'TX' : {
 		'institutions' : [
 			{
 				'id'          : 'ProgramName',   

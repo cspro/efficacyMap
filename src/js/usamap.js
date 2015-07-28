@@ -53,7 +53,6 @@
 
 		for (var stateId in stateConfig) {
 			
-			//Create obj
 			var raphaelSet = r.set();
 			raphaelSet.attr(attributes);
 			
