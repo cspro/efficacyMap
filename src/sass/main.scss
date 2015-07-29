@@ -17,10 +17,12 @@ $color5        : #0089b7; // light bg color
   font-size: 14px;
   color: #ccc;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
 body {
   background-color: $neutralBg;
   color: $textColor;
+  
 }
 a {
   color: white;
@@ -43,7 +45,10 @@ h1, h2, h3, h4 {
   color: $headerColor;
   margin-top: 0;
 }
-
+p {
+  line-height: 115%;
+  margin: 0;
+}
 img.no-resize { max-width: none; }
 img, area, map {
   outline: none;
@@ -86,25 +91,30 @@ img, area, map {
   left: 0; 
   width: $width; 
   height: $height; 
-  overflow: hidden; 
-  background-color: $mainBg;  
+  background-color: $mainBg;
+  overflow-x: hidden;  
 }
 .header {
   width: 100%;
   background-color: $darkBg;
-  padding: 1em 0;
-  h1 {
-    span {
-      font-weight: bold;
-      font-size: 18px;
-    }
+  padding: 1em;
+  h1, h2 {
     max-width: 800px;
     margin: 0 auto;
     display: block;
-    color: #eee;
     font-weight: normal;
     position: relative;
-    font-size: 18px;
+    line-height: 100%;
+  }
+  h1 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #eee;
+    margin-bottom: 4px;
+  }
+  h2 {
+    font-size: 14px;
+    color: #ddd;
   }
 }
 .upperWrapper {
@@ -116,19 +126,20 @@ img, area, map {
   background: -ms-linear-gradient(top, #dbdbdb 0%,#ffffff 50%); /* IE10+ */
   background: linear-gradient(to bottom, #dbdbdb 0%,#ffffff 50%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dbdbdb', endColorstr='#ffffff',GradientType=0 ); /* IE6 */
-}
-.upperContent {
-  padding: 1em 0;
-  margin: 0 auto 1.5em;
-  max-width: 800px;
-  .prompt {
-    float: left;
-    margin-right: 1em;
-    color: #333;
-  }
-  .selector {
-    float: right;
-    display: inline-block;
+  padding: 0 1em;
+  .upperContent {
+    padding: 1em 0;
+    margin: 0 auto 1.5em;
+    max-width: 800px;
+    .prompt {
+      float: left;
+      margin-right: 1em;
+      color: #333;
+    }
+    .selector {
+      float: right;
+      display: inline-block;
+    }
   }
 }
 
@@ -170,6 +181,7 @@ img, area, map {
 .footer {
 }
 
+@import 'footer';
 @import 'map';
 @import 'modal';
 

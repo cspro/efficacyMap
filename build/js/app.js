@@ -31,9 +31,9 @@
 				angular.forEach(this.stateConfig, function(value, key) {
 					var stateObj = stateData[key];
 					value['key'] = key;
-					value['enabled'] = (stateObj && stateObj['institutions']) ? true : false;
-					if (stateObj && stateObj['institutions']) {
-						value['count'] = stateObj['institutions'].length;
+					value['enabled'] = (stateObj && stateObj['items']) ? true : false;
+					if (stateObj && stateObj['items']) {
+						value['count'] = stateObj['items'].length;
 					} else {
 						value['count'] = 0;
 					}
@@ -92,10 +92,28 @@
 		$scope.$watch('currState', function(state) {
 			if (state) {
 				$scope.drawState(state);
-				$scope.institutions = $dataService.getStateData(state.key)['institutions'];
+				$scope.items = $dataService.getStateData(state.key)['items'];
 				$scope.showModal = true;
 			}
 		});
+		
+		$scope.xOffset = $scope.yOffset = 0; 
+		$scope.scale = 1;
+		$scope.onTransformChange = function() {
+			$scope.transform = "t" + $scope.xOffset + "," + $scope.yOffset + "s" + $scope.scale;
+			$scope.rState.clear();
+			var attributes = {
+				'fill' : '#364395',
+				'stroke-width' : 1,
+				'stroke' : '#ffffff',
+				'font-family' : 'Verdana',
+				'font-size' : '19px',
+				'font-weight' : 'bold'
+			};
+			var path = $scope.currState.path;
+			var shape = $scope.rState.path(path).attr(attributes);
+			shape.transform($scope.transform);
+		};
 		
 		// Call external map script, pass in scope for callback
 		setTimeout(function() {

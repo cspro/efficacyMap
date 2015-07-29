@@ -1,0 +1,43 @@
+.lowerWrapper {
+	background-color: #f1f1f1;
+	margin-top: 2em;
+	* {
+		color: #333!important;
+	}
+	img {
+	  max-width: 100%;
+	  height: auto;
+	}
+	img.aligncenter, img.alignleft, img.alignright, img.alignnone {
+		max-width: 100%;
+	}
+	p, .p {
+	  font-size: 14px;
+	  margin: 0 0 20px;
+	 	line-height: 1.71429 !important;
+	}
+	.spb_text_column {
+	  margin-bottom: 0 !important;
+	}
+	.h4, h5, .h5, h6, .h6 {
+	  font-weight: normal;
+	  margin-bottom: 20px;
+	  margin-top: 0;
+	  line-height: 1.3em !important;
+	}
+	h5, .h5 {
+	  font-size: 20px !important;
+	  font-weight: 400 !important;
+	  color: #444;
+	}
+	.mar-top--50 {
+	  margin-top: 10px !important;
+	}
+	a, a:hover {
+	  color: $color3 !important;
+	}
+}
+
+.clearfix {
+  clear: none!important;
+}

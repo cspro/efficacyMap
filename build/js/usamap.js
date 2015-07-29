@@ -99,7 +99,7 @@
 				if (stateObj.enabled) {
 					shapes[id].animate({
 						fill : hoverColor
-					}, 500);
+					}, 250);
 				}
 
 				//tooltip
