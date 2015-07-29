@@ -13,11 +13,12 @@
 	</div>
 </div>
 
-<div id="container">
-	<div class="mapWrapper">
+<div id="mapWrapper">
+	<div class="mapContainer">
 		<div id="map"></div>
 		<div id="text"></div>
 	</div>
+	
 </div>
 
 <div class="lowerWrapper row fw-row">
@@ -28,43 +29,34 @@
 					<div class="row">
 						<div class="spb_content_element col-sm-2 spb_text_column">
 							<div class="spb_wrapper clearfix">
-
 								<p><a href="http://www.pearsoned.com/wp-content/uploads/mylabs_thumb_340x3404.png"><img class="alignnone size-medium wp-image-30209" src="http://www.pearsoned.com/wp-content/uploads/mylabs_thumb_340x3404-300x300.png" alt="mylabs_thumb_340x340" width="300" height="300"></a></p>
-
 							</div>
 						</div>
 						<div class="spb_content_element col-sm-4 spb_text_column">
 							<div class="spb_wrapper clearfix">
-
 								<h5>Engage students with immersive content, tools, and experiences</h5>
 								<h6 class="mar-bot--50 weight--bold"><strong>MyLab<sup>™</sup> &amp; Mastering<sup>™</sup></strong></h6>
 								<p><strong>MyLab &amp; Mastering</strong> is the world’s leading collection of online homework, tutorial, and assessment products designed with a single purpose in mind: to improve the results of all higher education students, one student at a time.
 									<br>
 									<a class="inline-block mar-top--50 contains-smaller-icon--80" href="http://www.pearsoned.com/higher-education/products-and-services/course-resources-and-content/mylab-mastering/" target="_blank">Learn more about MyLab &amp; Mastering <i class="ss-right sf-icon sf-icon-float-none sf-icon-small sf-icon-standard">&raquo;</i></a></p>
-
 							</div>
 						</div>
 						<div class="spb_content_element col-sm-2 spb_text_column">
 							<div class="spb_wrapper clearfix">
-
 								<p><a href="http://www.pearsoned.com/wp-content/uploads/mymathlab_school-340x340.png"><img class="alignnone size-medium wp-image-20865" src="http://www.pearsoned.com/wp-content/uploads/mymathlab_school-340x340-300x300.png" alt="mymathlab_school-340x340" width="300" height="300"></a></p>
-
 							</div>
 						</div>
 						<div class="spb_content_element col-sm-4 spb_text_column">
 							<div class="spb_wrapper clearfix">
-
 								<h5>Online math courses that ensure student success</h5>
 								<h6 class="mar-bot--50 weight--bold"><strong>MyMathLab<sup>®</sup> for School</strong></h6>
 								<p><strong>MyMathLab</strong> for School is a series of online courses that offer students personalized instruction and practice and teachers the tools they need to deliver their courses online. MyMathLab for school ensures students are successful in their math course and adequately prepared for college, career, and life.
 									<br>
 									<a class="inline-block mar-top--50 contains-smaller-icon--80" href="http://www.mymathlabforschool.com" onclick="javascript:window.open('http://www.mymathlabforschool.com/'); return false;">Learn more about MyMathLab for School <i class="ss-right sf-icon sf-icon-float-none sf-icon-small sf-icon-standard">&raquo;</i></a></p>
-
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -94,6 +86,12 @@
 				</div>
 			</div>
 			<div class="modal-footer">
+				<div class="placementDiv" ng-show="showPlacement">
+					<input step="10" ng-change="onTransformChange()" type="number" ng-model="xOffset"></input>
+					<input step="10" ng-change="onTransformChange()" type="number" ng-model="yOffset"></input>
+					<input step="0.1" ng-change="onTransformChange()" type="number" ng-model="scale"></input>
+					<input type="text" ng-model="transform"></input>
+				</div>
 				<button type="button" class="btn btn-default" ng-click="onCloseModal()">Close</button>
 			</div>
 		</div>

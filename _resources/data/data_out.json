@@ -1,8 +1,4 @@
-if (!data) {
-	var data = {};
-}
-
-data.stateData = {
+{
 	"PA": {
 		"items": [
 			{
@@ -1606,4 +1602,4 @@ data.stateData = {
 		],
 		"id": "CO"
 	}
-};
+}

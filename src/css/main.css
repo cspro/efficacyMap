@@ -3,7 +3,6 @@
   font-size: 14px;
   color: #ccc;
   margin: 0;
-  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -27,6 +26,7 @@ h1 {
   font-size: 1.5em;
   font-weight: 600;
   margin-top: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 h2 {
@@ -161,13 +161,6 @@ img, area, map {
   display: inline-block;
 }
 
-#container {
-  clear: both;
-  background: url("../images/modal_divider.png") top left no-repeat;
-  background-size: 100% 6px;
-  padding-top: 10px;
-}
-
 .loading {
   display: block;
   position: absolute;
@@ -194,6 +187,7 @@ img, area, map {
 }
 .lowerWrapper * {
   color: #333 !important;
+  -webkit-font-smoothing: antialiased;
 }
 .lowerWrapper img {
   max-width: 100%;
@@ -264,32 +258,39 @@ img, area, map {
   margin-bottom: 40px;
 }
 
-.mapWrapper {
+#mapWrapper {
+  clear: both;
+  background: url("../images/modal_divider.png") top left no-repeat;
+  background-size: 100% 6px;
+  padding-top: 10px;
+}
+
+.mapContainer {
   margin: 0 auto;
   position: relative;
   font-size: 12px;
   line-height: 16px;
 }
-.mapWrapper h1, .mapWrapper h2, .mapWrapper h3, .mapWrapper h4, .mapWrapper h5, .mapWrapper h6 {
+.mapContainer h1, .mapContainer h2, .mapContainer h3, .mapContainer h4, .mapContainer h5, .mapContainer h6 {
   margin-bottom: 10px;
   font-weight: normal;
 }
-.mapWrapper h1 {
+.mapContainer h1 {
   font-size: 26px;
   line-height: 32px;
 }
-.mapWrapper p, .mapWrapper ul {
+.mapContainer p, .mapContainer ul {
   margin-bottom: 10px;
 }
-.mapWrapper ul {
+.mapContainer ul {
   margin-left: 30px;
 }
-.mapWrapper img {
+.mapContainer img {
   float: left;
   padding-right: 5px;
   padding-top: 2px;
 }
-.mapWrapper #map {
+.mapContainer #map {
   float: left;
   clear: both;
   margin-left: -20px;

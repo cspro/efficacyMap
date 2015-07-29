@@ -1,8 +1,10 @@
 .lowerWrapper {
+	
 	background-color: #f1f1f1;
 	margin-top: 2em;
 	* {
 		color: #333!important;
+  	-webkit-font-smoothing: antialiased;
 	}
 	img {
 	  max-width: 100%;

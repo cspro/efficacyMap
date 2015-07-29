@@ -49,6 +49,22 @@
 		};
 	});
 	
+	app.directive('escKey', function($document) {
+		return {
+			restrict : 'A',
+			link : function(scope, element, attrs) {
+				$document.bind('keydown keypress', function(e) {
+					if (e.which === 27) {
+						scope.$apply(function() {
+							scope.$eval(attrs.escKey);
+						});
+						e.preventDefault();
+					}
+				});
+			}
+		};
+	}); 
+	
 	app.controller('MainCtrl', function($rootScope, $scope, $location, $timeout, $dataService) {
 		
 		$scope.stateConfig = $dataService.getStateConfig();
@@ -61,7 +77,7 @@
 			$scope.showModal = false;
 			$scope.currState = null;
 		};
-		
+
 		$scope.drawState = function(state) {
 			var attributes = {
 				'fill' : '#364395',
@@ -97,6 +113,7 @@
 			}
 		});
 		
+		$scope.showPlacement = false;
 		$scope.xOffset = $scope.yOffset = 0; 
 		$scope.scale = 1;
 		$scope.onTransformChange = function() {

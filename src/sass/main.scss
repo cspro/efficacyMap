@@ -17,7 +17,6 @@ $color5        : #0089b7; // light bg color
   font-size: 14px;
   color: #ccc;
   margin: 0;
-  -webkit-font-smoothing: antialiased;
 }
 body {
   background-color: $neutralBg;
@@ -38,8 +37,11 @@ h1 {
   font-size: 1.5em;
   font-weight: 600;
   margin-top: 0;
+  -webkit-font-smoothing: antialiased;
 }
-h2 {font-size: 1.35em;}
+h2 {
+  font-size: 1.35em;
+}
 h3 {font-size: 1.15em;}
 h1, h2, h3, h4 {
   color: $headerColor;
@@ -143,12 +145,6 @@ img, area, map {
   }
 }
 
-#container {
-  clear: both;
-  background: url("../images/modal_divider.png") top left no-repeat;
-  background-size: 100% 6px;
-  padding-top: 10px;
-}
 .loading {
   display: block;
   position: absolute;

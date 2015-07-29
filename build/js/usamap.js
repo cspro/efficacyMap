@@ -214,7 +214,7 @@
 
 		r.changeSize(mapWidth, mapHeight, true, false);
 
-		$(".mapWrapper").css({
+		$(".mapContainer").css({
 			'width' : mapWidth + 'px',
 			'height' : mapHeight + 'px'
 		});
