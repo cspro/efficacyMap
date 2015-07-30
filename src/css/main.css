@@ -296,6 +296,36 @@ img, area, map {
   margin-left: -20px;
 }
 
+.mapKey {
+  background: #868ebf;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #868ebf 0%, #364395 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #868ebf), color-stop(100%, #364395));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, #868ebf 0%, #364395 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, #868ebf 0%, #364395 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, #868ebf 0%, #364395 100%);
+  /* IE10+ */
+  background: linear-gradient(to right, #868ebf 0%, #364395 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#868ebf', endColorstr='#364395',GradientType=1 );
+  /* IE6-9 */
+  width: 200px;
+  height: 20px;
+  line-height: 20px;
+  margin: 20px auto 0;
+}
+.mapKey .td {
+  border: 1px solid #fff;
+  text-align: center;
+  font-size: 12px;
+  width: 25%;
+  color: #fff;
+}
+
 .modal {
   display: block;
   height: 0;
@@ -320,8 +350,10 @@ img, area, map {
 @media screen and (min-width: 768px) {
   .modal-dialog {
     width: auto;
+    max-width: 1000px;
     padding: 0 3em;
     margin-bottom: 1em;
+    pointer-events: none;
   }
 }
 .modal-backdrop.in {
@@ -335,6 +367,7 @@ img, area, map {
   border: none;
   color: #fff !important;
   background-color: rgba(0, 0, 0, 0.75);
+  pointer-events: all;
 }
 
 .modal-header {
@@ -444,12 +477,18 @@ img, area, map {
 }
 .stateContent ul li .institution {
   font-weight: bold;
-  color: #006da4;
+  color: #0089b7;
   margin-bottom: -0.25em;
 }
 .stateContent ul li .location {
   font-size: 85%;
   margin-bottom: 0.25em;
+  color: #006da4;
+}
+.stateContent ul li .product {
+  font-weight: bold;
+  color: #ccc;
+  font-size: 85%;
 }
 .stateContent ul li .outcome {
   font-size: 85%;

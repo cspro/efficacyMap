@@ -60,7 +60,7 @@
 			
 			shapeAttrs['id'] =	'id';
 			shapeAttrs['fill'] = stateObj.enabled ? stateColor : disabledColor;
-			shapeAttrs['opacity'] = stateObj.enabled ? (stateObj.count * 0.1) + 0.5 : 1;
+			shapeAttrs['opacity'] = stateObj.enabled ? (stateObj.count * 0.07) + 0.5 : 1;
 			stateIds[i] = stateId;
 
 			raphaelSet.push(r.path(stateObj.path).attr(shapeAttrs));

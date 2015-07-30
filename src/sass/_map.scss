@@ -65,3 +65,25 @@
   }
 }
 
+.mapKey {
+  background: #868ebf; /* Old browsers */
+  background: -moz-linear-gradient(left, #868ebf 0%, #364395 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#868ebf), color-stop(100%,#364395)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, #868ebf 0%,#364395 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, #868ebf 0%,#364395 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, #868ebf 0%,#364395 100%); /* IE10+ */
+  background: linear-gradient(to right, #868ebf 0%,#364395 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#868ebf', endColorstr='#364395',GradientType=1 ); /* IE6-9 */
+  width: 200px;
+  height: 20px;
+  line-height: 20px;
+  margin: 20px auto 0;
+  .td {
+    border: 1px solid #fff;
+    text-align: center;
+    font-size: 12px;
+    width: 25%; 
+    color: #fff;
+  }
+}
+

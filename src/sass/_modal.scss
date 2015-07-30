@@ -28,8 +28,10 @@ $iconIndent: 110px;
 @media screen and (min-width: 768px) {
   .modal-dialog {
     width: auto;
+    max-width: 1000px;
     padding: 0 3em;
     margin-bottom: 1em;
+    pointer-events: none;
   }
 }
 
@@ -44,6 +46,7 @@ $iconIndent: 110px;
   border: none;
   color: #fff !important;
   background-color: $modalBgColor;
+  pointer-events: all;
 }
 
 .modal-header {
@@ -149,12 +152,18 @@ $iconIndent: 110px;
       margin-bottom: 1em;
       .institution {
         font-weight: bold;
-        color: $color3;
+        color: $color5;
         margin-bottom: -0.25em;
       }
       .location {
         font-size: 85%;
         margin-bottom: 0.25em;
+        color: $color3;
+      }
+      .product {
+        font-weight: bold;
+        color: #ccc;
+        font-size: 85%;
       }
       .outcome {
         font-size: 85%;

@@ -18,7 +18,16 @@
 		<div id="map"></div>
 		<div id="text"></div>
 	</div>
-	
+	<div class="mapKey">
+		<div class="table">
+			<div class="tr">
+				<div class="td">1-3</div>
+				<div class="td">4-6</div>
+				<div class="td">7-10</div>
+				<div class="td">10+</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="lowerWrapper row fw-row">
@@ -64,7 +73,7 @@
 
 
 <div id="myModal" class="modal" style="display: block;" role="dialog" ng-show="showModal">
-	<div class="modal-backdrop fade in" style="height: 100%"></div>
+	<div class="modal-backdrop fade in" style="height: 100%" ng-click="onCloseModal()"></div>
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -74,13 +83,14 @@
 			<div class="modal-body">
 				<div id="stateMap"></div>
 				<div class="stateContent">
-					<h4>{{currState.name}} Higher Education Partners</h4>
+					<h4>Higher Education Institution Partners: {{currState.name}}</h4>
 					<ul>
 						<li ng-repeat="item in items">
 							<div class="institution">{{item.institution}}</div>
 							<div class="location">{{item.city}}, {{currState.abbr}}</div>
+							<div class="product">{{item.product}}</div>
 							<div class="outcome">{{item.result}}</div>
-							<a class="link" href="{{item.link}}">View Project &raquo;</a>
+							<a class="link" href="{{item.link}}">Read case study &raquo;</a>
 						</li>
 					</ul>
 				</div>
