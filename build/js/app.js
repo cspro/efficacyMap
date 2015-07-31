@@ -65,7 +65,7 @@
 		};
 	}); 
 	
-	app.controller('MainCtrl', function($rootScope, $scope, $location, $timeout, $dataService) {
+	app.controller('MainCtrl', function($rootScope, $scope, $location, $timeout, $window, $dataService) {
 		
 		$scope.stateConfig = $dataService.getStateConfig();
 		$scope.stateConfigArray = [];
@@ -107,6 +107,8 @@
 
 		$scope.$watch('currState', function(state) {
 			if (state) {
+			  $('#wrapper').animate({scrollTop: 0 });
+			  $('#partnerList').animate({scrollTop: 0});
 				$scope.drawState(state);
 				$scope.items = $dataService.getStateData(state.key)['items'];
 				$scope.showModal = true;

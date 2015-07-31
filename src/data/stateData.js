@@ -1243,7 +1243,7 @@ data.stateData = {
 				"state": "ND",
 				"id": 94,
 				"product": "MyFoundationsLab",
-				"institution": "north Dakota Center for Distance Education",
+				"institution": "North Dakota Center for Distance Education",
 				"year": "2014"
 			}
 		],

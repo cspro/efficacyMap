@@ -3,9 +3,13 @@
 	var current = null;
 	var isPin = false;
 
-	var stateColor = '#364395';
-	var disabledColor = '#ccc';
-	var hoverColor = '#006da4';
+	var stateColor1 = '#364395';
+	var stateColor2 = '#205f9f';
+	var stateColor3 = '#006da4';
+	var stateColor4 = '#0080aa';
+	var stateColor5 = '#0089b7';
+	var disabledColor = '#bbb';
+	var hoverColor = '#7db658';
 	var strokeColor = '#ffffff';
 	var abbrColor = '#ffffff';
 	var mapWidth = 1000;
@@ -13,7 +17,7 @@
 	var textAreaWidth = 300;
 	var textAreaPadding = 10;
 	var textAreaHeight = 300;
-	var responsive = true;
+	var responsive = false;
 	var useParameterInUrl = false;
 	
 	var ratio = mapWidth / mapHeight;
@@ -59,8 +63,19 @@
 			var stateObj = stateConfig[stateId];
 			
 			shapeAttrs['id'] =	'id';
+			shapeAttrs['opacity'] = 1;
+			var stateColor;
+			if (stateObj.count > 0 && stateObj.count <= 3) {
+				stateColor = stateColor5;
+			} else if (stateObj.count >= 4 && stateObj.count <= 6) {
+				stateColor = stateColor3;
+			} else if (stateObj.count >= 7 && stateObj.count <= 9) {
+				stateColor = stateColor2;
+			} else if (stateObj.count >= 10) {
+				stateColor = stateColor1;
+			}
 			shapeAttrs['fill'] = stateObj.enabled ? stateColor : disabledColor;
-			shapeAttrs['opacity'] = stateObj.enabled ? (stateObj.count * 0.07) + 0.5 : 1;
+			stateObj.color = stateColor;
 			stateIds[i] = stateId;
 
 			raphaelSet.push(r.path(stateObj.path).attr(shapeAttrs));
@@ -95,7 +110,6 @@
 				var id = $(this.node).attr('id');
 				var stateObj = stateConfig[id];
 
-				//Animate if not already the current state
 				if (stateObj.enabled) {
 					shapes[id].animate({
 						fill : hoverColor
@@ -119,7 +133,7 @@
 
 				if (stateObj.enabled) {
 					shapes[id].animate({
-						fill : stateObj.enabled ? stateColor : disabledColor
+						fill : stateObj.enabled ? stateObj.color : disabledColor
 					}, 500);
 				}
 				
@@ -139,9 +153,10 @@
 
 					//Animate previous state out
 					if (current) {
-						var curid = $(current.node).attr('id');
+						var currId = $(current.node).attr('id');
+						var currObj = stateConfig[currId];
 						current.animate({
-							fill : stateColor
+							fill : currObj.color
 						}, 500);
 					}
 
@@ -170,8 +185,11 @@
 				responsiveResize();
 			});
 		} else {
-			resizeMap(r);
+			$(window).resize(function() {
+				dynamicResize();
+			});
 		}
+		dynamicResize();
 
 	}
 
@@ -218,6 +236,13 @@
 			'width' : mapWidth + 'px',
 			'height' : mapHeight + 'px'
 		});
+	}
+	
+	function dynamicResize() {
+		winWidth = win.width();
+		mapWidth = winWidth >= startingMapWidth ? startingMapWidth : winWidth*1;
+		mapHeight = mapWidth / ratio;
+		resizeMap();
 	}
 
 	function responsiveResize() {

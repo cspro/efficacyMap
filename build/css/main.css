@@ -181,6 +181,18 @@ img, area, map {
   }
 }
 /* Large devices (large desktops, 1200px and up) */
+/* iphone select scaling fix */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  body {
+    -webkit-text-size-adjust: none;
+  }
+
+  select {
+    clear: both;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+}
 .lowerWrapper {
   background-color: #f1f1f1;
   margin-top: 2em;
@@ -297,33 +309,40 @@ img, area, map {
 }
 
 .mapKey {
-  background: #868ebf;
-  /* Old browsers */
-  background: -moz-linear-gradient(left, #868ebf 0%, #364395 100%);
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #868ebf), color-stop(100%, #364395));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, #868ebf 0%, #364395 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left, #868ebf 0%, #364395 100%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(left, #868ebf 0%, #364395 100%);
-  /* IE10+ */
-  background: linear-gradient(to right, #868ebf 0%, #364395 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#868ebf', endColorstr='#364395',GradientType=1 );
-  /* IE6-9 */
-  width: 200px;
-  height: 20px;
-  line-height: 20px;
+  width: 320px;
+  height: 22px;
+  line-height: 22px;
   margin: 20px auto 0;
+}
+.mapKey .table {
+  border-radius: 8px;
+  overflow: hidden;
 }
 .mapKey .td {
   border: 1px solid #fff;
   text-align: center;
   font-size: 12px;
-  width: 25%;
+  width: 40px;
   color: #fff;
+}
+.mapKey .td.td0 {
+  width: 160px;
+  background-color: transparent;
+  color: #333;
+  font-weight: bold;
+  background-color: #ddd;
+}
+.mapKey .td.td1 {
+  background-color: #0089b7;
+}
+.mapKey .td.td2 {
+  background-color: #006da4;
+}
+.mapKey .td.td3 {
+  background-color: #205f9f;
+}
+.mapKey .td.td4 {
+  background-color: #364395;
 }
 
 .modal {
@@ -450,6 +469,23 @@ img, area, map {
     margin-left: 110px !important;
   }
 }
+#stateMap {
+  display: none;
+}
+
+.stateContent {
+  margin-left: 1em;
+}
+
+@media (min-width: 600px) {
+  #stateMap {
+    display: block;
+  }
+
+  .stateContent {
+    margin-left: 300px;
+  }
+}
 /* ================================== */
 #stateMap {
   width: 300px;
@@ -459,7 +495,6 @@ img, area, map {
 
 .stateContent {
   padding: 2em 2px 1em 0;
-  margin-left: 300px;
 }
 .stateContent h4 {
   color: #fff;

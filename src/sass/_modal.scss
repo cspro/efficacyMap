@@ -125,6 +125,20 @@ $iconIndent: 110px;
     }
   }
 }
+#stateMap {
+  display: none;
+}
+.stateContent {
+  margin-left: 1em;
+}
+@media (min-width: 600px) {
+  #stateMap {
+    display: block;
+  }
+  .stateContent {
+    margin-left: 300px;
+  }
+}
 
 /* ================================== */
 
@@ -136,7 +150,6 @@ $iconIndent: 110px;
 
 .stateContent {
   padding: 2em 2px 1em 0;
-  margin-left: 300px;
   
   h4 {
     color: #fff;
