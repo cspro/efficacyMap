@@ -238,6 +238,12 @@ img, area, map {
   clear: none !important;
 }
 
+/* override bootstrap */
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+  }
+}
 /* ------ map
 -----------------------------------------------*/
 .tooltip {
@@ -309,7 +315,7 @@ img, area, map {
 }
 
 .mapKey {
-  width: 320px;
+  width: 310px;
   height: 22px;
   line-height: 22px;
   margin: 20px auto 0;
@@ -326,11 +332,8 @@ img, area, map {
   color: #fff;
 }
 .mapKey .td.td0 {
-  width: 160px;
-  background-color: transparent;
-  color: #333;
-  font-weight: bold;
-  background-color: #ddd;
+  width: 150px;
+  background-color: #777;
 }
 .mapKey .td.td1 {
   background-color: #0089b7;
@@ -498,7 +501,11 @@ img, area, map {
 }
 .stateContent h4 {
   color: #fff;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.25em;
+}
+.stateContent h5 {
+  margin-top: 0;
+  margin-bottom: 1.5em;
 }
 .stateContent ul {
   margin: 0;
@@ -507,33 +514,75 @@ img, area, map {
   overflow: auto;
 }
 .stateContent ul li {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#364395+0,101010+50 */
+  background: #364395;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #364395 0%, #222222 50%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #364395), color-stop(50%, #222222));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #364395 0%, #222222 50%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #364395 0%, #222222 50%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #364395 0%, #222222 50%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #364395 0%, #222222 50%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#364395', endColorstr='#222222',GradientType=0 );
+  /* IE6-9 */
+  border-radius: 6px;
+  overflow: hidden;
   list-style-type: none;
   margin-bottom: 1em;
 }
-.stateContent ul li .institution {
+.stateContent ul li .partnerHeader {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#303970+0,364395+100 */
+  background: #303970;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #303970 0%, #204f9f 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #303970), color-stop(100%, #204f9f));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #303970 0%, #204f9f 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #303970 0%, #204f9f 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #303970 0%, #204f9f 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #303970 0%, #204f9f 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#303970', endColorstr='#204f9f',GradientType=0 );
+  /* IE6-9 */
+  padding: 0.5em 0.5em 0.25em;
+}
+.stateContent ul li .partnerHeader .institution {
   font-weight: bold;
-  color: #0089b7;
-  margin-bottom: -0.25em;
+  color: #fff;
+  line-height: 100%;
+  -webkit-font-smoothing: antialiased;
 }
-.stateContent ul li .location {
+.stateContent ul li .partnerHeader .location {
   font-size: 85%;
-  margin-bottom: 0.25em;
-  color: #006da4;
+  color: rgba(255, 255, 255, 0.75);
 }
-.stateContent ul li .product {
+.stateContent ul li .partnerBody {
+  padding: 0.5em 0.5em 0.25em;
+}
+.stateContent ul li .partnerBody .product {
   font-weight: bold;
-  color: #ccc;
-  font-size: 85%;
-}
-.stateContent ul li .outcome {
   font-size: 85%;
   color: #fff;
 }
-.stateContent ul li .link {
+.stateContent ul li .partnerBody .outcome {
   font-size: 85%;
-  color: #0089b7;
+  color: #fff;
 }
-.stateContent ul li .link:hover {
+.stateContent ul li .partnerBody .link {
+  font-size: 85%;
+  color: #69b4cd;
+}
+.stateContent ul li .partnerBody .link:hover {
   color: #fff;
 }
 

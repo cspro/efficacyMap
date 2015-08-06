@@ -5,7 +5,8 @@
 		$routeProvider.
 			when('/', {
 				templateUrl: 'partials/main.tpl.html',
-				controller: 'MainCtrl'
+				controller: 'MainCtrl',
+				reloadOnSearch: false
 			}).
 			otherwise({
 				redirectTo: '/'
@@ -27,7 +28,6 @@
 			if (!this.stateConfig) {
 				this.stateConfig = data.stateConfig;
 				var stateData = data.stateData;
-				var stateConfigArray = [];
 				angular.forEach(this.stateConfig, function(value, key) {
 					var stateObj = stateData[key];
 					value['key'] = key;
@@ -37,15 +37,24 @@
 					} else {
 						value['count'] = 0;
 					}
-					stateConfigArray.push(value);
 				});
-				this.stateConfigArray = stateConfigArray;
 			}
 			if (id && this.stateConfig[id]) {
 				return this.stateConfig[id];
 			} else {
 				return this.stateConfig;
 			}
+		};
+		this.getStateIds = function() {
+			if (!this.stateIds) {
+				var stateIds = [];
+				if (!this.stateConfig) {this.getStateConfig();}
+				angular.forEach(this.stateConfig, function(value, key) {
+					stateIds.push(value['key']);
+				});
+				this.stateIds = stateIds;
+			}
+			return this.stateIds;
 		};
 	});
 	
@@ -65,13 +74,24 @@
 		};
 	}); 
 	
-	app.controller('MainCtrl', function($rootScope, $scope, $location, $timeout, $window, $dataService) {
+	app.controller('MainCtrl', function($rootScope, $scope, $location, $timeout, $window, $routeParams, $dataService) {
 		
 		$scope.stateConfig = $dataService.getStateConfig();
-		$scope.stateConfigArray = [];
+		$scope.stateConfigArray = []; // for select box
 		angular.forEach($scope.stateConfig, function(value, key) {
 			$scope.stateConfigArray.push(value);
 		});
+		
+		$scope.$on('$routeUpdate', function(value) {
+			console.log("on $routeUpdate. value: " + value);
+		});
+		
+		console.log("$routeParams: " + $routeParams.stateId);
+		var stateIds = $dataService.getStateIds();
+		var stateId = $routeParams.stateId ? $routeParams.stateId.toUpperCase() : null;
+		if (stateId && stateIds.indexOf(stateId) > -1 ) {
+			$scope.currState = $dataService.getStateConfig(stateId);
+		}
 
 		$scope.onCloseModal = function() {
 			$scope.showModal = false;
@@ -101,8 +121,10 @@
 		};
 
 		// callback for external map script
-		$scope.onStateClick = function(state) {
+		$scope.onStateClick = function(e, state) {
+			e.preventDefault();
 			$scope.currState = state;
+			$scope.$apply();
 		};
 
 		$scope.$watch('currState', function(state) {
@@ -112,6 +134,9 @@
 				$scope.drawState(state);
 				$scope.items = $dataService.getStateData(state.key)['items'];
 				$scope.showModal = true;
+				$location.search({stateId: state.key});
+			} else {
+				$location.search('');
 			}
 		});
 		
@@ -137,7 +162,7 @@
 		// Call external map script, pass in scope for callback
 		setTimeout(function() {
 			createMap($scope, $dataService.getStateConfig());
-		}, 100);
+		}, 10);
 
 	});
 	

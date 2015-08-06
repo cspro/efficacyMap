@@ -9,7 +9,7 @@
 	var stateColor4 = '#0080aa';
 	var stateColor5 = '#0089b7';
 	var disabledColor = '#bbb';
-	var hoverColor = '#7db658';
+	var hoverColor = '#6adaff';
 	var strokeColor = '#ffffff';
 	var abbrColor = '#ffffff';
 	var mapWidth = 1000;
@@ -167,7 +167,7 @@
 
 					current = shapes[id];
 					
-					scope.onStateClick(stateObj);
+					scope.onStateClick(e, stateObj);
 					scope.$digest();
 					
 					// $rootScope.$broadcast('stateClick', stateId);

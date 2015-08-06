@@ -5,7 +5,7 @@
 
 <div class="upperWrapper">
 	<div class="upperContent">
-		<p class="prompt">Select a state by clicking on the map, or use the dropdown to the right.</p>
+		<p class="prompt">Select a state by clicking on the map or using the dropdown menu to the right.</p>
 		<div class="selector">
 			<label for="stateSelector">State:</label>
 			<select name="stateSelector" ng-options="state as state.name for state in stateConfigArray | filter:{enabled:true}" ng-model="currState"></select>
@@ -37,32 +37,18 @@
 			<div class="spb_wrapper">
 				<div class="container">
 					<div class="row">
-						<div class="spb_content_element col-sm-2 spb_text_column">
+						<div class="spb_content_element col-sm-4 spb_text_column">
 							<div class="spb_wrapper clearfix">
 								<p><a href="http://www.pearsoned.com/wp-content/uploads/mylabs_thumb_340x3404.png"><img class="alignnone size-medium wp-image-30209" src="http://www.pearsoned.com/wp-content/uploads/mylabs_thumb_340x3404-300x300.png" alt="mylabs_thumb_340x340" width="300" height="300"></a></p>
 							</div>
 						</div>
-						<div class="spb_content_element col-sm-4 spb_text_column">
+						<div class="spb_content_element col-sm-8 spb_text_column">
 							<div class="spb_wrapper clearfix">
 								<h5>Engage students with immersive content, tools, and experiences</h5>
 								<h6 class="mar-bot--50 weight--bold"><strong>MyLab<sup>™</sup> &amp; Mastering<sup>™</sup></strong></h6>
 								<p><strong>MyLab &amp; Mastering</strong> is the world’s leading collection of online homework, tutorial, and assessment products designed with a single purpose in mind: to improve the results of all higher education students, one student at a time.
 									<br>
 									<a class="inline-block mar-top--50 contains-smaller-icon--80" href="http://www.pearsoned.com/higher-education/products-and-services/course-resources-and-content/mylab-mastering/" target="_blank">Learn more about MyLab &amp; Mastering <i class="ss-right sf-icon sf-icon-float-none sf-icon-small sf-icon-standard">&raquo;</i></a></p>
-							</div>
-						</div>
-						<div class="spb_content_element col-sm-2 spb_text_column">
-							<div class="spb_wrapper clearfix">
-								<p><a href="http://www.pearsoned.com/wp-content/uploads/mymathlab_school-340x340.png"><img class="alignnone size-medium wp-image-20865" src="http://www.pearsoned.com/wp-content/uploads/mymathlab_school-340x340-300x300.png" alt="mymathlab_school-340x340" width="300" height="300"></a></p>
-							</div>
-						</div>
-						<div class="spb_content_element col-sm-4 spb_text_column">
-							<div class="spb_wrapper clearfix">
-								<h5>Online math courses that ensure student success</h5>
-								<h6 class="mar-bot--50 weight--bold"><strong>MyMathLab<sup>®</sup> for School</strong></h6>
-								<p><strong>MyMathLab</strong> for School is a series of online courses that offer students personalized instruction and practice and teachers the tools they need to deliver their courses online. MyMathLab for school ensures students are successful in their math course and adequately prepared for college, career, and life.
-									<br>
-									<a class="inline-block mar-top--50 contains-smaller-icon--80" href="http://www.mymathlabforschool.com" onclick="javascript:window.open('http://www.mymathlabforschool.com/'); return false;">Learn more about MyMathLab for School <i class="ss-right sf-icon sf-icon-float-none sf-icon-small sf-icon-standard">&raquo;</i></a></p>
 							</div>
 						</div>
 					</div>
@@ -85,13 +71,18 @@
 				<div id="stateMap"></div>
 				<div class="stateContent">
 					<h4>Higher Education Institution Partners: {{currState.name}}</h4>
+					<h5>MyLab&trade; &amp; Mastering&trade; Efficacy Case Studies, January 2014&ndash;June 2015</h5>
 					<ul id="partnerList">
-						<li ng-repeat="item in items">
-							<div class="institution">{{item.institution}}</div>
-							<div class="location">{{item.city}}, {{currState.abbr}}</div>
-							<div class="product">{{item.product}}</div>
-							<div class="outcome">{{item.result}}</div>
-							<a class="link" href="{{item.link}}">Read case study &raquo;</a>
+						<li ng-repeat="item in items | orderBy: 'institution'">
+							<div class="partnerHeader">
+								<div class="institution">{{item.institution}}</div>
+								<div class="location">{{item.city}}, {{currState.abbr}}</div>
+							</div>
+							<div class="partnerBody">
+								<div class="product">{{item.product}}</div>
+								<div class="outcome">{{item.result}}</div>
+								<a class="link" href="{{item.link}}" target="_blank">Read the case study &raquo;</a>
+							</div>
 						</li>
 					</ul>
 				</div>

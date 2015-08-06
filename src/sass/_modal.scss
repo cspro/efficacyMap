@@ -153,7 +153,11 @@ $iconIndent: 110px;
   
   h4 {
     color: #fff;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.25em;
+  }
+  h5 {
+    margin-top: 0;
+    margin-bottom: 1.5em;
   }
   ul {
     margin: 0;
@@ -161,32 +165,58 @@ $iconIndent: 110px;
     max-height: 400px;
     overflow: auto;
     li {
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#364395+0,101010+50 */
+      background: #364395; /* Old browsers */
+      background: -moz-linear-gradient(top,  #364395 0%, #222222 50%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#364395), color-stop(50%,#222222)); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top,  #364395 0%,#222222 50%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top,  #364395 0%,#222222 50%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(top,  #364395 0%,#222222 50%); /* IE10+ */
+      background: linear-gradient(to bottom,  #364395 0%,#222222 50%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#364395', endColorstr='#222222',GradientType=0 ); /* IE6-9 */
+      border-radius: 6px;
+      overflow: hidden;
       list-style-type: none;
       margin-bottom: 1em;
-      .institution {
-        font-weight: bold;
-        color: $color5;
-        margin-bottom: -0.25em;
-      }
-      .location {
-        font-size: 85%;
-        margin-bottom: 0.25em;
-        color: $color3;
-      }
-      .product {
-        font-weight: bold;
-        color: #ccc;
-        font-size: 85%;
-      }
-      .outcome {
-        font-size: 85%;
-        color: #fff;
-      }
-      .link {
-        font-size: 85%;
-        color: $color5;
-        &:hover {
+      .partnerHeader {
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#303970+0,364395+100 */
+        background: #303970; /* Old browsers */
+        background: -moz-linear-gradient(top,  #303970 0%, #204f9f 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#303970), color-stop(100%,#204f9f)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  #303970 0%,#204f9f 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  #303970 0%,#204f9f 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  #303970 0%,#204f9f 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  #303970 0%,#204f9f 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#303970', endColorstr='#204f9f',GradientType=0 ); /* IE6-9 */
+        padding: 0.5em 0.5em 0.25em;
+        .institution {
+          font-weight: bold;
           color: #fff;
+          line-height: 100%;
+          -webkit-font-smoothing: antialiased;
+        }
+        .location {
+          font-size: 85%;
+          color: rgba(255,255,255,0.75);
+        }
+      }
+      .partnerBody {
+        padding: 0.5em 0.5em 0.25em;
+        .product {
+          font-weight: bold;
+          font-size: 85%;
+          color: #fff;
+        }
+        .outcome {
+          font-size: 85%;
+          color: #fff;
+        }
+        .link {
+          font-size: 85%;
+          color: desaturate(lighten($color5, 25%), 50%);
+          &:hover {
+            color: #fff;
+          }
         }
       }
     }
