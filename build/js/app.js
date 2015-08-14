@@ -112,7 +112,7 @@
 			} else {
 				$scope.rState = new Raphael('stateMap', 300, 300);
 			}
-			var path = state.path;
+			var path = state.altPath ? state.altPath : state.path;
 			var shape = $scope.rState.path(path).attr(attributes);
 			if (state.transform) {
 				shape.transform(state.transform);
@@ -140,6 +140,7 @@
 			}
 		});
 		
+		// DEBUGGING - For placement of the states in the modal
 		$scope.showPlacement = false;
 		$scope.xOffset = $scope.yOffset = 0; 
 		$scope.scale = 1;
@@ -154,7 +155,7 @@
 				'font-size' : '19px',
 				'font-weight' : 'bold'
 			};
-			var path = $scope.currState.path;
+			var path = $scope.currState.altPath ? $scope.currState.altPath : $scope.currState.path;
 			var shape = $scope.rState.path(path).attr(attributes);
 			shape.transform($scope.transform);
 		};
